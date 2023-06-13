@@ -1,5 +1,18 @@
 ## STREETLIFE AFRICA
 
+
+## Project Structure
+
+The project follows a standard structure:
+
+streetlife-africa/
+├── css/                [Folder for css files]
+│   └── style.css
+├── images/             [Folder for image assets]
+├── js/                 [Folder for javascript files]
+├── index.html          [Project entery point]
+└── README.md           [README file]
+
 ## Getting Started
 
 To get started with the project, follow these steps:
