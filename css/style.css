@@ -502,3 +502,43 @@ svg {
   color: var(--primary-clr);
   font-weight: bold;
 }
+
+
+/* More about starts */
+.more__about__text {
+  width: 50%;
+  padding-bottom: 5rem;
+}
+
+.more__about__text p {
+  font-size: 16px;
+}
+
+.more__about__img-container {
+  padding-left: 20rem;
+  width: 700px;
+  height: 150px;
+  position: relative;
+}
+
+.more__about__img {
+  position: absolute;
+  width: 659px;
+  height: 124px;
+  left: 321px;
+  top: 10px;
+  z-index: 1;
+  border-radius: 36px;
+  background: url('../images/more-about.png'), #F0F0F0;
+}
+
+.more__about__overlap-container {
+  position: absolute;
+  width: 659px;
+  height: 104px;
+  left: 369px;
+  top: 62px;
+
+  background: #F99A43;
+  border-radius: 36px;
+}
