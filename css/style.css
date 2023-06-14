@@ -492,15 +492,14 @@ svg {
   padding: .75rem 2rem;
   background: var(--light-300);
   color: var(--primary-clr);
-  font-weight: bold;
+  /* font-weight: bold; */
   
 }
 
 .view-all svg {
   margin-left: 1.25rem;
-  color: var(--dark-800);
-  color: var(--primary-clr);
-  font-weight: bold;
+  color: #F07605;
+  font-weight: bolder;
 }
 
 
@@ -541,4 +540,104 @@ svg {
 
   background: #F99A43;
   border-radius: 36px;
+}
+
+/* More about end */
+.past-performance__header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.past-performer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.past-performer__img-container {
+  width: 424.93px;
+  height: 558.57px;
+  position: relative;
+  width: 50%;
+}
+
+.past-performer-overlay {
+  position: absolute;
+  width: 352px;
+  height: 485px;
+  left: 34px;
+  top: 32.31px;
+  background: #B3B3B3;
+  border-radius: 12px;
+  transform: rotate(-8.71deg);
+}
+
+.past-performer__profile-img {
+  object-fit: cover;
+  position: absolute;
+  width: 356px;
+  height: 528px;
+  left: 68.93px;
+  top: 30.57px;
+
+  border-radius: 12px;
+  background: url('../images/past-performer.png');
+  
+}
+
+.past-performer__profile-img div {
+  position: absolute;
+  top: -26rem;
+  left: -16px;
+  z-index: -1;
+}
+
+.past-performer__profile-content {
+  margin-left: 20px;
+  width: 50%;
+  padding-top: 2rem;
+}
+
+.past-performer__name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: var(--oswald);
+}
+
+.past-performer__details {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: var(--source-serif-pro);
+}
+
+.past-performer__socials a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #333;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.past-performer__socials a:hover {
+  color: #3334;
+}
+
+.past-performer__prev,
+.past-performer__next {
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.past-performer__prev svg,
+.past-performer__next svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  vertical-align: middle;
 }
