@@ -148,10 +148,12 @@ a {
   /* font-size: var(--text-2); */
   font-family: var(--dm-sans);
   z-index: 100;
+  padding: 10px;
 }
 
 .header__navbar--logo a {
   font-size: var(--text-2);
+  line-height: 0;
 }
 .header__navbar a {
   color: var(--dark-800);
@@ -167,6 +169,11 @@ a {
 .header__nav-list li {
   margin: 0.5rem;
   padding: 0.5rem 1rem;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  color: #454545;
 }
 
 .bars {
@@ -181,8 +188,9 @@ a {
 a.contact__button__link {
   background: var(--primary-clr);
   color: var(--light-300);
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
+  border-radius: 32px;
+  padding: 16px 24px;
+  font-size: 17px;
 }
 
 strong {
