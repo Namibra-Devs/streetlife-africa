@@ -565,7 +565,7 @@ svg {
 .past-performer-overlay {
   position: absolute;
   width: 352px;
-  height: 485px;
+  height: 470px;
   left: 34px;
   top: 32.31px;
   background: #B3B3B3;
@@ -577,7 +577,7 @@ svg {
   object-fit: cover;
   position: absolute;
   width: 356px;
-  height: 528px;
+  height: 500px;
   left: 68.93px;
   top: 30.57px;
 
@@ -596,7 +596,7 @@ svg {
 .past-performer__profile-content {
   margin-left: 20px;
   width: 50%;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
 }
 
 .past-performer__name {
@@ -611,30 +611,36 @@ svg {
   color: #333;
   margin-bottom: 20px;
   font-family: var(--source-serif-pro);
+  line-height: 30px;
 }
 
 .past-performer__socials a {
   display: inline-block;
   margin-right: 10px;
-  color: #333;
-  font-size: 20px;
+  color: #262626;
+  font-size: 27px;
   transition: color 0.3s;
 }
 
 .past-performer__socials a:hover {
-  color: #3334;
+  color: rgb(77, 77, 185)
 }
 
-.past-performer__prev,
-.past-performer__next {
+.past-performer__slider-btns {
+  padding-top: 50px;
   display: inline-block;
-  border: none;
   background: none;
   cursor: pointer;
 }
 
-.past-performer__prev svg,
-.past-performer__next svg {
+.past-performer__slider-btns button {
+  border: 1px solid #858585;
+  border-radius: 36px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.past-performer__slider-btns svg {
   width: 24px;
   height: 24px;
   stroke: currentColor;
