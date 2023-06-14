@@ -302,7 +302,7 @@ svg {
 
 .about-img {
   margin-right: 2.5rem;
-  width: 100%;
+  width: 50%;
   background-color: var(--dark-600);
   padding: 1.5rem 0.5rem;
   border-radius: 0.5rem;
@@ -310,7 +310,7 @@ svg {
 
 .about-text {
   margin-left: 2.5rem;
-  width: 100%;
+  width: 50%;
 }
 
 .about-header {
@@ -376,7 +376,7 @@ svg {
   margin-left: -0.5rem;
 }
 .bg-dark-800 {
-  background-color: var(--dark-800);
+  background-color: #2E2C2B;
   color: var(--light-400);
   margin-left: -0.5rem;
 }
