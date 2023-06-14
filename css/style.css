@@ -1,6 +1,6 @@
 :root {
   /* Colors */
-  --primary-clr: #FB9F4B;
+  --primary-clr: #F07605;
   --primary-clr-100: #f99a43;
   --secondary-clr: #fff5eb;
   --dark-800: #262626;
@@ -369,7 +369,7 @@ svg {
 }
 
 .bg-primary-clr {
-  background-color: var(--primary-clr);
+  background-color: #FB9F4B;
 }
 .bg-dark {
   background-color: #e0e0e0;
@@ -396,10 +396,7 @@ svg {
 /* Events */
 .flex-events {
   display: flex;
-  /* flex-direction: column-reverse; */
-  /* justify-content: center; */
-  /* padding: 0 3rem; */
-  /* width: 100%; */
+  align-items: center;
 }
 
 .flex-event {
@@ -424,18 +421,19 @@ svg {
 .date {
   padding: 0 2.5rem;
   width: 50%;
-  margin-top: 4rem;
+  margin-top: 5rem;
   margin-left: -8rem;
 }
 
 .event-text {
-  font-size: 1.125rem;
+  font-size: 22px;
   font-weight: 500;
   transform: rotate(-90deg);
-  width: 10rem;
+  width: 12rem;
   margin-right: -6.5rem;
   font-family: var(--raleway);
   text-align: center;
+  color: #000000;
 }
 
 .event-details {
@@ -450,28 +448,30 @@ svg {
 
 .event-details p {
   width: 25rem;
-  font-size: 0.875rem;
+  font-size: 16px;
   padding: 0.2rem 0;
 }
 
 .date-flex {
   display: flex;
   justify-content: start;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .get-ticket {
-  background: var(--primary-clr);
-  color: var(--light-300);
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 5rem;
+  font-family: 'Source Serif Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration-line: underline;
+  color: #F07605;
 }
 
-.get-ticket:hover {
+/* .get-ticket:hover {
   background: var(--primary-clr-100);
   color: var(--dark-800);
-}
+} */
 
 .button-div {
   padding-top: 1rem;
@@ -487,7 +487,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--primary-clr);
+  border: 1px solid var(--primary-clr);
   border-radius: 5rem;
   padding: .75rem 2rem;
   background: var(--light-300);
