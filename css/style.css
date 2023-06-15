@@ -47,10 +47,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  animation-duration: 0.01ms !important;
+  /* animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
-  scroll-behavior: auto !important;
+  scroll-behavior: auto !important; */
 }
 
 * {
@@ -691,17 +691,54 @@ svg {
 /* Gallery section ends */
 
 /* Animated text starts */
-#moving-text {
-  position: relative;
-  animation: moveRightToLeft 10s linear infinite;
+#scroll-text__container {
+  align-items: center;
+  padding: 8px 0px;
+  width: 1140px;
+  height: 64px;
+
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #454545;
+  overflow: hidden;
 }
 
-@keyframes moveRightToLeft {
-  0% {
-    left: 100%;
+#scroll-text {
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  
+  -moz-animation: my-animation 15s linear infinite;
+  -webkit-animation: my-animation 15s linear infinite;
+  animation: my-animation 15s linear infinite;
+
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from { -moz-transform: translateX(100%); }
+  to { -moz-transform: translateX(-100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from { -webkit-transform: translateX(100%); }
+  to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
   }
-  100% {
-    left: -100%;
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
 }
 
