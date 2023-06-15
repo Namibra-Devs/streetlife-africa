@@ -397,6 +397,7 @@ svg {
 .flex-events {
   display: flex;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .flex-event {
