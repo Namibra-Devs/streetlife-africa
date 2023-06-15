@@ -776,6 +776,8 @@ svg {
 .contact-section {
   background-color: #FFF5EB;
   padding: 40px;
+  margin-bottom: 4rem;
+  border-radius: 24px;
 }
 
 .contact-content {
