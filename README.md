@@ -34,4 +34,5 @@ To know more about BEM CSS Methodology, visit https://en.bem.info/methodology/
 ## Collaborator instructions
 
 To add a new module or page, create a new branch, work on it, commit changes and create a pull request to the main branch.
+Use discriptive commits
 
