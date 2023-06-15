@@ -881,7 +881,7 @@ button[type="submit"]:hover {
 footer {
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 30px 150px;
 }
 
 .footer-content {
@@ -891,6 +891,7 @@ footer {
 
 .content-section {
   margin-bottom: 20px;
+  flex-basis: 40%;
 }
 
 .content-section h4{
@@ -936,11 +937,11 @@ footer {
  color: #F6F6F6;
 }
 
-.quick-links,
+/* .quick-links,
 .instagram-feed {
   flex-basis: calc(50% - 10px);
   margin-bottom: 20px;
-}
+} */
 
 .quick-links h4,
 .instagram-feed h4 {
@@ -948,29 +949,25 @@ footer {
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  line-height: 34px;
+  line-height: 52px;
   letter-spacing: 0.01em;
   color: #FCFCFC;
 }
 
 .quick-links a {
   display: block;
+  font-family: 'Source Serif Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #F6F6F6;
+  margin-top: 10px;
 }
-
-/* .instagram-feed div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.instagram-feed img {
-  width: 100px;
-  height: 100px;
-  margin: 5px;
-} */
 
 .instagram-feed {
   margin-bottom: 20px;
+  flex-basis: 25%;
 }
 
 .instagram-feed h4 {
@@ -991,6 +988,10 @@ footer {
   margin: 5px;
 }
 
+#footer-hr {
+  border-color: #FBB575;
+  margin: 2rem;
+}
 
 .footer-bottom {
   text-align: center;
