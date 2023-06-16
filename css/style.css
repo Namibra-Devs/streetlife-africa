@@ -658,7 +658,8 @@ svg {
 }
 
 /* gallery paragram after title */
-.gallery-para {
+.gallery-para,
+.contact-para {
   font-size: 28px;
   line-height: 40px;
   color: #333333;
