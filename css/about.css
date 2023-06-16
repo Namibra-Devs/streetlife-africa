@@ -1,0 +1,63 @@
+.bg-brown {
+    background-color: #FFF5EB;
+}
+
+/* our goal start */
+.our-goal__text,
+.our-goal__img {
+    width: 50%;
+}
+.our-goal__text {
+    margin-right: 7rem;
+}
+
+.our-goal__img img {
+    width: 400px
+}
+
+.our-goal__content {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+/* Our team start */
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .team-member {
+    flex-basis: calc(33.33% - 20px);
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .team-member__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .team-member__content {
+    padding: 20px;
+  }
+
+  .team-member__name {
+    font-family: 'Oswald';
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: #212121;
+
+    padding-bottom: 5px;
+  }
+
+  .team-member__role {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+  }
