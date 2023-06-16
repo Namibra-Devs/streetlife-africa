@@ -657,6 +657,15 @@ svg {
   text-transform: uppercase;
 }
 
+/* gallery paragram after title */
+.gallery-para {
+  font-size: 28px;
+  line-height: 40px;
+  color: #333333;
+  font-family: 'Source Serif Pro';
+  padding-bottom: 2rem;
+}
+
 .section__gallery {
   display: flex;
   flex-wrap: wrap;
