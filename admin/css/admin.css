@@ -149,3 +149,48 @@
 .align-right a:hover {
     text-decoration: underline;
 }
+
+/* Admin Header */
+.admin-header {
+  display: flex;
+  padding: 24px 150px 24px;
+  background: #F6F6F6;
+  box-shadow: 0px 4px 4px rgba(188, 182, 182, 0.25);
+}
+
+.navlist {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h2 {
+  font-family: var(--dm-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  color: #333333;
+}
+
+.navlinks ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navlinks li {
+  list-style: none;
+  margin-inline-start: 2rem;
+}
+
+.navlinks li a {
+  font-size: 16px;
+  color: #454545;
+  font-weight: 400;
+  font-family: 'source-serif-pro';
+  line-height: 24px;
+}
+

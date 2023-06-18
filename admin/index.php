@@ -40,7 +40,8 @@
                     <input class="form-control" type="password" name="password" id="password">
                 </div>
                 <div class="form-group submit">
-                    <input class="login-submit" type="submit" name="email" id="email">
+                    <!-- <input class="login-submit" type="submit" name="email" id="email"> -->
+                    <a href="./dashboard.php" class="login-submit">Login</a>
                 </div>
                 <div class="form-group align-right">
                     <a class="forgot-password" href="#">Forgot your password?</a>
