@@ -787,7 +787,6 @@ svg {
 
 .blog-post__title {
   font-size: 22px;
-  margin-top: 1rem;
   text-transform: capitalize;
   font-family: var(--oswald);
   font-weight: 500;
@@ -810,7 +809,15 @@ svg {
   opacity: 0.8;
 }
 
-.blog-post__read-more {
+/* Admin Blog edit */
+.blog-post__edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* .blog-post__read-more {
   display: inline-block;
   margin-top: 10px;
   padding: 6px 12px;
@@ -822,7 +829,7 @@ svg {
 
 .blog-post__read-more:hover {
   background-color: #0056b3;
-}
+} */
 
 
 /* content section start */
