@@ -1,61 +1,178 @@
+<?php require_once('header.php'); ?>
+
+<section class="content-header">
+  <h1>Dashboard</h1>
+</section>
+
 <?php
-error_reporting(0);
-session_start();
-$loginError = $_SESSION['loginError'];
-session_destroy();
+$statement = $pdo->prepare("SELECT * FROM tbl_user");
+$statement->execute();
+$total_user = $statement->rowCount();
+
+$statement = $pdo->prepare("SELECT * FROM tbl_category");
+$statement->execute();
+$total_category = $statement->rowCount();
+
+$statement = $pdo->prepare("SELECT * FROM tbl_news");
+$statement->execute();
+$total_news = $statement->rowCount();
+
+$statement = $pdo->prepare("SELECT * FROM tbl_photo");
+$statement->execute();
+$total_photo = $statement->rowCount();
+
+$statement = $pdo->prepare("SELECT * FROM tbl_team_member");
+$statement->execute();
+$total_team_member = $statement->rowCount();
 ?>
 
-<html lang="en">
+<section class="content">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="./css/admin.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Oswald:wght@300;600;700&family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@300;600;700&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Admin | login</title>
-</head>
-
-<body>
-    <div class="login-container">
-        <div class="loginbox">
-            <div class="login-wrap">
-                <h1>Admin Login</h1>
-                <p>Access to our dashboard</p>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">
+              <i class="fa fa-rss fa-5x"></i>
             </div>
-            <p style="color: red; padding-bottom:1rem" >
-                <?php echo $loginError; ?>
-            </p>
-            <form action="../admin/login-check.php" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input class="form-control" type="text" name="email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="email">Password:</label>
-                    <input class="form-control" type="password" name="password" id="password">
-                </div>
-                <div class="form-group submit">
-                    <input class="login-submit" type="submit" name="login">
-                    <!-- <a href="./dashboard.php" class="login-submit">Login</a> -->
-                </div>
-                <div class="form-group align-right">
-                    <a class="forgot-password" href="#">Forgot your password?</a>
-                </div>
-            </form>
+            <div class="col-xs-6 text-right">
+              <p class="announcement-heading"><?php echo $total_user; ?></p>
+              <p class="announcement-text"><strong>Users</strong></p>
+            </div>
+          </div>
         </div>
+        <a href="#">
+          <div class="panel-footer announcement-bottom">
+            <div class="row">
+              <div class="col-xs-6">
+                View
+              </div>
+              <div class="col-xs-6 text-right">
+                <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
-</body>
 
-</html>
+
+    <div class="col-lg-3">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">
+              <i class="fa fa-tags fa-5x"></i>
+            </div>
+            <div class="col-xs-6 text-right">
+              <p class="announcement-heading"><?php echo $total_category; ?></p>
+              <p class="announcement-text"><strong>Categories</strong></p>
+            </div>
+          </div>
+        </div>
+        <a href="category.php">
+          <div class="panel-footer announcement-bottom">
+            <div class="row">
+              <div class="col-xs-6">
+                View
+              </div>
+              <div class="col-xs-6 text-right">
+                <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="col-lg-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">
+              <i class="fa fa-rss fa-5x"></i>
+            </div>
+            <div class="col-xs-6 text-right">
+              <p class="announcement-heading"><?php echo $total_news; ?></p>
+              <p class="announcement-text"><strong>Blogs</strong></p>
+            </div>
+          </div>
+        </div>
+        <a href="blogs.php">
+          <div class="panel-footer announcement-bottom">
+            <div class="row">
+              <div class="col-xs-6">
+                View
+              </div>
+              <div class="col-xs-6 text-right">
+                <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">
+              <i class="fa fa-picture-o fa-5x"></i>
+            </div>
+            <div class="col-xs-6 text-right">
+              <p class="announcement-heading"><?php echo $total_photo; ?></p>
+              <p class="announcement-text"><strong>Photos</strong></p>
+            </div>
+          </div>
+        </div>
+        <a href="photo.php">
+          <div class="panel-footer announcement-bottom">
+            <div class="row">
+              <div class="col-xs-6">
+                View
+              </div>
+              <div class="col-xs-6 text-right">
+                <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6">
+              <i class="fa fa-users fa-5x"></i>
+            </div>
+            <div class="col-xs-6 text-right">
+              <p class="announcement-heading"><?php echo $total_team_member; ?></p>
+              <p class="announcement-text"><strong>Team members</strong></p>
+            </div>
+          </div>
+        </div>
+        <a href="team-member.php">
+          <div class="panel-footer announcement-bottom">
+            <div class="row">
+              <div class="col-xs-6">
+                View
+              </div>
+              <div class="col-xs-6 text-right">
+                <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<?php require_once('footer.php'); ?>
