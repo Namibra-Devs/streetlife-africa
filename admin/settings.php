@@ -113,14 +113,6 @@ if (isset($_POST['form_email'])) {
 }
 
 
-if (isset($_POST['form5'])) {
-    // updating the database
-    $statement = $pdo->prepare("UPDATE tbl_settings SET total_recent_news_footer=?, total_popular_news_footer=?, total_recent_news_sidebar=?, total_popular_news_sidebar=?, total_recent_news_home_page=? WHERE id=1");
-    $statement->execute(array($_POST['total_recent_news_footer'], $_POST['total_popular_news_footer'], $_POST['total_recent_news_sidebar'], $_POST['total_popular_news_sidebar'], $_POST['total_recent_news_home_page']));
-
-    $success_message = 'Sidebar settings is updated successfully.';
-}
-
 if (isset($_POST['form6'])) {
     // updating the database
     $statement = $pdo->prepare("UPDATE tbl_settings SET meta_title_home=?, meta_keyword_home=?, meta_description_home=? WHERE id=1");
@@ -182,106 +174,12 @@ if (isset($_POST['form_newsletter'])) {
 }
 
 
-if (isset($_POST['form_banner_search'])) {
+// update about section
+if (isset($_POST['form_home_about'])) {
     $valid = 1;
 
-    $path = $_FILES['photo']['name'];
-    $path_tmp = $_FILES['photo']['tmp_name'];
-
-    if ($path == '') {
-        $valid = 0;
-        $error_message .= 'You must have to select a photo<br>';
-    } else {
-        $ext = pathinfo($path, PATHINFO_EXTENSION);
-        $file_name = basename($path, '.' . $ext);
-        if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif') {
-            $valid = 0;
-            $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
-        }
-    }
-
-    if ($valid == 1) {
-        // removing the existing photo
-        $statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as $row) {
-            $banner_search = $row['banner_search'];
-            unlink('../assets/uploads/' . $banner_search);
-        }
-
-        // updating the data
-        $final_name = 'banner_search' . '.' . $ext;
-        move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
-
-        // updating the database
-        $statement = $pdo->prepare("UPDATE tbl_settings SET banner_search=? WHERE id=1");
-        $statement->execute(array($final_name));
-
-        $success_message = 'Search Page Banner is updated successfully.';
-    }
-}
-
-if (isset($_POST['form_banner_category'])) {
-    $valid = 1;
-
-    $path = $_FILES['photo']['name'];
-    $path_tmp = $_FILES['photo']['tmp_name'];
-
-    if ($path == '') {
-        $valid = 0;
-        $error_message .= 'You must have to select a photo<br>';
-    } else {
-        $ext = pathinfo($path, PATHINFO_EXTENSION);
-        $file_name = basename($path, '.' . $ext);
-        if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif') {
-            $valid = 0;
-            $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
-        }
-    }
-
-    if ($valid == 1) {
-        // removing the existing photo
-        $statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as $row) {
-            $banner_category = $row['banner_category'];
-            unlink('../assets/uploads/' . $banner_category);
-        }
-
-        // updating the data
-        $final_name = 'banner_category' . '.' . $ext;
-        move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
-
-        // updating the database
-        $statement = $pdo->prepare("UPDATE tbl_settings SET banner_category=? WHERE id=1");
-        $statement->execute(array($final_name));
-
-        $success_message = 'Category Page Banner is updated successfully.';
-    }
-}
-
-if (isset($_POST['form_home_service'])) {
-    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_service=?, home_subtitle_service=?, home_status_service=? WHERE id=1");
-    $statement->execute(array($_POST['home_title_service'], $_POST['home_subtitle_service'], $_POST['home_status_service']));
-
-    $success_message = 'Service Section is updated successfully.';
-}
-
-if (isset($_POST['form_home_team_member'])) {
-    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_team_member=?, home_subtitle_team_member=?, home_status_team_member=? WHERE id=1");
-    $statement->execute(array($_POST['home_title_team_member'], $_POST['home_subtitle_team_member'], $_POST['home_status_team_member']));
-
-    $success_message = 'Team Member Section is updated successfully.';
-}
-
-if (isset($_POST['form_home_testimonial'])) {
-
-    $valid = 1;
-
-    $path = $_FILES['home_photo_testimonial']['name'];
-    $path_tmp = $_FILES['home_photo_testimonial']['tmp_name'];
+    $path = $_FILES['home_about_img']['name'];
+    $path_tmp = $_FILES['home_about_img']['tmp_name'];
 
     if ($path != '') {
         $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -300,39 +198,39 @@ if (isset($_POST['form_home_testimonial'])) {
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $row) {
-                $home_photo_testimonial = $row['home_photo_testimonial'];
-                unlink('../assets/uploads/' . $home_photo_testimonial);
+                $home_about_img = $row['home_about_img'];
+                unlink('../assets/uploads/' . $home_about_img);
             }
 
             // updating the data
-            $final_name = 'testimonial' . '.' . $ext;
+            $final_name = 'home_about_img' . '.' . $ext;
             move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
 
             // updating the database
-            $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_testimonial=?, home_subtitle_testimonial=?,home_photo_testimonial=?, home_status_testimonial=? WHERE id=1");
-            $statement->execute(array($_POST['home_title_testimonial'], $_POST['home_subtitle_testimonial'], $final_name, $_POST['home_status_testimonial']));
-        } else {
-            // updating the database
-            $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_testimonial=?, home_subtitle_testimonial=?,home_status_testimonial=? WHERE id=1");
-            $statement->execute(array($_POST['home_title_testimonial'], $_POST['home_subtitle_testimonial'], $_POST['home_status_testimonial']));
+            $statement = $pdo->prepare("UPDATE tbl_settings SET home_about_title=?, home_about_img=?, home_about_content=? WHERE id=1");
+            $statement->execute(array($_POST['home_about_title'], $final_name, $_POST['home_about_content']));
+        }else {
+            $statement = $pdo->prepare("UPDATE tbl_settings SET home_about_title=?, home_about_content=? WHERE id=1");
+            $statement->execute(array($_POST['home_about_title'], $_POST['home_about_content']));
         }
-
-        $success_message = 'Testimonial Data is updated successfully.';
+            $success_message = 'About Section is updated successfully.';
+        
     }
 }
 
-if (isset($_POST['form_home_news'])) {
-    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_news=?, home_subtitle_news=?, home_status_news=? WHERE id=1");
-    $statement->execute(array($_POST['home_title_news'], $_POST['home_subtitle_news'], $_POST['home_status_news']));
+// check whether service section is to be updated
+if (isset($_POST['form_home_service'])) {
+    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_service=?, home_subtitle_service=?, home_status_service=? WHERE id=1");
+    $statement->execute(array($_POST['home_title_service'], $_POST['home_subtitle_service'], $_POST['home_status_service']));
 
-    $success_message = 'News Section is updated successfully.';
+    $success_message = 'Service Section is updated successfully.';
 }
 
-if (isset($_POST['form_home_partner'])) {
-    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_partner=?, home_subtitle_partner=?, home_status_partner=? WHERE id=1");
-    $statement->execute(array($_POST['home_title_partner'], $_POST['home_subtitle_partner'], $_POST['home_status_partner']));
+if (isset($_POST['form_home_team_member'])) {
+    $statement = $pdo->prepare("UPDATE tbl_settings SET home_title_team_member=?, home_subtitle_team_member=?, home_status_team_member=? WHERE id=1");
+    $statement->execute(array($_POST['home_title_team_member'], $_POST['home_subtitle_team_member'], $_POST['home_status_team_member']));
 
-    $success_message = 'Partner Section is updated successfully.';
+    $success_message = 'Team Member Section is updated successfully.';
 }
 
 if (isset($_POST['form_home_counter'])) {
@@ -368,12 +266,12 @@ if (isset($_POST['form_home_counter'])) {
             move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
 
             // updating the database
-            $statement = $pdo->prepare("UPDATE tbl_settings SET counter_1_title=?, counter_1_value=?, counter_2_title=?, counter_2_value=?, counter_3_title=?, counter_3_value=?, counter_4_title=?, counter_4_value=?, counter_photo=?, counter_status=? WHERE id=1");
-            $statement->execute(array($_POST['counter_1_title'], $_POST['counter_1_value'], $_POST['counter_2_title'], $_POST['counter_2_value'], $_POST['counter_3_title'], $_POST['counter_3_value'], $_POST['counter_4_title'], $_POST['counter_4_value'], $final_name, $_POST['counter_status']));
+            $statement = $pdo->prepare("UPDATE tbl_settings SET counter_1_title=?, counter_1_value=?, counter_2_title=?, counter_2_value=?, counter_3_title=?, counter_3_value=? counter_photo=?, counter_status=? WHERE id=1");
+            $statement->execute(array($_POST['counter_1_title'], $_POST['counter_1_value'], $_POST['counter_2_title'], $_POST['counter_2_value'], $_POST['counter_3_title'], $_POST['counter_3_value'], $final_name, $_POST['counter_status']));
         } else {
             // updating the database
-            $statement = $pdo->prepare("UPDATE tbl_settings SET counter_1_title=?, counter_1_value=?, counter_2_title=?, counter_2_value=?, counter_3_title=?, counter_3_value=?, counter_4_title=?, counter_4_value=?, counter_status=? WHERE id=1");
-            $statement->execute(array($_POST['counter_1_title'], $_POST['counter_1_value'], $_POST['counter_2_title'], $_POST['counter_2_value'], $_POST['counter_3_title'], $_POST['counter_3_value'], $_POST['counter_4_title'], $_POST['counter_4_value'], $_POST['counter_status']));
+            $statement = $pdo->prepare("UPDATE tbl_settings SET counter_1_title=?, counter_1_value=?, counter_2_title=?, counter_2_value=?, counter_3_title=?, counter_3_value=?, counter_status=? WHERE id=1");
+            $statement->execute(array($_POST['counter_1_title'], $_POST['counter_1_value'], $_POST['counter_2_title'], $_POST['counter_2_value'], $_POST['counter_3_title'], $_POST['counter_3_value'], $_POST['counter_status']));
         }
 
         $success_message = 'Counter Data is updated successfully.';
@@ -408,47 +306,26 @@ foreach ($result as $row) {
     $contact_phone               = $row['contact_phone'];
     $contact_fax                 = $row['contact_fax'];
     $contact_map_iframe          = $row['contact_map_iframe'];
-    $total_recent_news_footer    = $row['total_recent_news_footer'];
-    $total_popular_news_footer   = $row['total_popular_news_footer'];
-    $total_recent_news_sidebar   = $row['total_recent_news_sidebar'];
-    $total_popular_news_sidebar  = $row['total_popular_news_sidebar'];
-    $total_recent_news_home_page = $row['total_recent_news_home_page'];
     $meta_title_home             = $row['meta_title_home'];
     $meta_keyword_home           = $row['meta_keyword_home'];
     $meta_description_home       = $row['meta_description_home'];
+    $home_about_title            = $row['home_about_title'];
+	$home_about_img              = $row['home_about_img'];
+	$home_about_content          = $row['home_about_content'];
     $home_title_service          = $row['home_title_service'];
     $home_subtitle_service       = $row['home_subtitle_service'];
     $home_status_service         = $row['home_status_service'];
     $home_title_team_member      = $row['home_title_team_member'];
     $home_subtitle_team_member   = $row['home_subtitle_team_member'];
     $home_status_team_member     = $row['home_status_team_member'];
-    $home_title_testimonial      = $row['home_title_testimonial'];
-    $home_subtitle_testimonial   = $row['home_subtitle_testimonial'];
-    $home_photo_testimonial      = $row['home_photo_testimonial'];
-    $home_status_testimonial     = $row['home_status_testimonial'];
-    $home_title_news             = $row['home_title_news'];
-    $home_subtitle_news          = $row['home_subtitle_news'];
-    $home_status_news            = $row['home_status_news'];
-    $home_title_partner          = $row['home_title_partner'];
-    $home_subtitle_partner       = $row['home_subtitle_partner'];
-    $home_status_partner         = $row['home_status_partner'];
     $mod_rewrite                 = $row['mod_rewrite'];
-    $newsletter_title            = $row['newsletter_title'];
-    $newsletter_text             = $row['newsletter_text'];
-    $newsletter_photo            = $row['newsletter_photo'];
-    $newsletter_status           = $row['newsletter_status'];
-    $banner_search               = $row['banner_search'];
-    $banner_category             = $row['banner_category'];
+
     $counter_1_title             = $row['counter_1_title'];
     $counter_1_value             = $row['counter_1_value'];
     $counter_2_title             = $row['counter_2_title'];
     $counter_2_value             = $row['counter_2_value'];
     $counter_3_title             = $row['counter_3_title'];
     $counter_3_value             = $row['counter_3_value'];
-    $counter_4_title             = $row['counter_4_title'];
-    $counter_4_value             = $row['counter_4_value'];
-    $counter_photo               = $row['counter_photo'];
-    $counter_status              = $row['counter_status'];
     $color                       = $row['color'];
     $preloader                   = $row['preloader'];
     $active_editor               = $row['active_editor'];
@@ -502,10 +379,7 @@ foreach ($result as $row) {
                     <li><a href="#tab_2" data-toggle="tab">Favicon</a></li>
                     <li><a href="#tab_3" data-toggle="tab">General Content</a></li>
                     <li><a href="#tab_4" data-toggle="tab">Email Settings</a></li>
-                    <li><a href="#tab_5" data-toggle="tab">News</a></li>
                     <li><a href="#tab_6" data-toggle="tab">Home Page</a></li>
-                    <li><a href="#tab_9" data-toggle="tab">Banner</a></li>
-                    <li><a href="#tab_7" data-toggle="tab">Color</a></li>
                     <li><a href="#tab_8" data-toggle="tab">Other</a></li>
                 </ul>
                 <div class="tab-content">
@@ -684,54 +558,6 @@ foreach ($result as $row) {
 
                     </div>
 
-                    <div class="tab-pane" id="tab_5">
-
-                        <form class="form-horizontal" action="" method="post">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label">Footer (How many recent news?)<span>*</span></label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_recent_news_footer" value="<?php echo $total_recent_news_footer; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label">Footer (How many popular news?)<span>*</span></label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_popular_news_footer" value="<?php echo $total_popular_news_footer; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label">Sidebar (How many recent news?)<span>*</span></label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_recent_news_sidebar" value="<?php echo $total_recent_news_sidebar; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label">Sidebar (How many popular news?)<span>*</span></label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_popular_news_sidebar" value="<?php echo $total_popular_news_sidebar; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label">Home Page (How many recent news?)<span>*</span></label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_recent_news_home_page" value="<?php echo $total_recent_news_home_page; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-4 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form5">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-                    </div>
-
 
                     <div class="tab-pane" id="tab_6">
 
@@ -769,8 +595,7 @@ foreach ($result as $row) {
                             </div>
                         </form>
 
-
-                <!-- ABOUT SECTION
+                <!-- ABOUT SECTION -->
                         <h3>About Section</h3>
                         <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                             <div class="box box-info">
@@ -778,108 +603,31 @@ foreach ($result as $row) {
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Title </label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="home_title_service" class="form-control" value="<?php echo $home_title_service; ?>">
+                                            <input type="text" name="home_about_title" class="form-control" value="<?php echo $home_about_title; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">SubTitle </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_subtitle_service" class="form-control" value="<?php echo $home_subtitle_service; ?>">
+                                        <label for="" class="col-sm-2 control-label">Content </label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control editor" name="home_about_content"><?php echo $home_about_content ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_service" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_service == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_service == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
+                                        <label for="" class="col-sm-2 control-label">Existing Photo</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <img src="../assets/uploads/<?php echo $home_about_img; ?>" class="existing-photo" style="height:80px;">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_service">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form> -->
-
-
-
-                        <h3>Service Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_title_service" class="form-control" value="<?php echo $home_title_service; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_service" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_service == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_service == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
+                                        <label for="" class="col-sm-2 control-label">New Photo</label>
+                                        <div class="col-sm-6" style="padding-top:6px;">
+                                            <input type="file" name="home_about_img">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_service">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-
-                        <h3>Team Member Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_title_team_member" class="form-control" value="<?php echo $home_title_team_member; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">SubTitle </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_subtitle_team_member" class="form-control" value="<?php echo $home_subtitle_team_member; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_team_member" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_team_member == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_team_member == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_team_member">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form_home_about">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -921,43 +669,7 @@ foreach ($result as $row) {
                                             <input type="text" name="counter_3_value" class="form-control" value="<?php echo $counter_3_value; ?>">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Item 4 - Title </label>
-                                        <div class="col-sm-3">
-                                            <input type="text" name="counter_4_title" class="form-control" value="<?php echo $counter_4_title; ?>">
-                                        </div>
-                                        <label for="" class="col-sm-2 control-label">Item 4 - Value </label>
-                                        <div class="col-sm-2">
-                                            <input type="text" name="counter_4_value" class="form-control" value="<?php echo $counter_4_value; ?>">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Existing Counter Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="../assets/uploads/<?php echo $counter_photo; ?>" class="existing-photo" style="height:180px;">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">New Counter Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="counter_photo">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="counter_status" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($counter_status == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($counter_status == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
@@ -967,201 +679,6 @@ foreach ($result as $row) {
                                 </div>
                             </div>
                         </form>
-
-
-
-                        <h3>Testimonial Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_title_testimonial" class="form-control" value="<?php echo $home_title_testimonial; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">SubTitle </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_subtitle_testimonial" class="form-control" value="<?php echo $home_subtitle_testimonial; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Existing Testimonial Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="../assets/uploads/<?php echo $home_photo_testimonial; ?>" class="existing-photo" style="height:180px;">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">New Testimonial Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="home_photo_testimonial">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_testimonial" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_testimonial == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_testimonial == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_testimonial">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-
-                        <h3>News Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_title_news" class="form-control" value="<?php echo $home_title_news; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">SubTitle </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_subtitle_news" class="form-control" value="<?php echo $home_subtitle_news; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_news" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_news == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_news == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_news">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-                        <h3>Partner Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_title_partner" class="form-control" value="<?php echo $home_title_partner; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">SubTitle </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="home_subtitle_partner" class="form-control" value="<?php echo $home_subtitle_partner; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Show on Home? </label>
-                                        <div class="col-sm-6" style="padding-top:7px;">
-                                            <select name="home_status_partner" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($home_status_partner == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($home_status_partner == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_home_partner">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
-
-
-
-
-
-
-
-                        <h3>Newsletter Section</h3>
-                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Title </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="newsletter_title" class="form-control" value="<?php echo $newsletter_title; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Newsletter Text</label>
-                                        <div class="col-sm-8">
-                                            <textarea name="newsletter_text" class="form-control" cols="30" rows="10" style="height: 120px;"><?php echo $newsletter_text; ?></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Existing Newsletter Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="../assets/uploads/<?php echo $newsletter_photo; ?>" class="existing-photo" style="height:180px;">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">New Newsletter Background</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="newsletter_photo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Status </label>
-                                        <div class="col-sm-2">
-                                            <select name="newsletter_status" class="form-control" style="width:auto;">
-                                                <option value="Show" <?php if ($newsletter_status == 'Show') {
-                                                                            echo 'selected';
-                                                                        } ?>>Show</option>
-                                                <option value="Hide" <?php if ($newsletter_status == 'Hide') {
-                                                                            echo 'selected';
-                                                                        } ?>>Hide</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_newsletter">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-
                     </div>
 
 
@@ -1225,79 +742,10 @@ foreach ($result as $row) {
                             </div>
                         </form>
                     </div>
-
-
-
-                    <div class="tab-pane" id="tab_9">
-                        <table class="table table-bordered">
-                            <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Search Page Banner</h4>
-                                        <p>
-                                            <img src="<?php echo BASE_URL . 'assets/uploads/' . $banner_search; ?>" alt="" style="width: 100%;height:auto;">
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Service Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form_banner_search">
-                                    </td>
-                                </form>
-                            </tr>
-                            <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Category Page Banner</h4>
-                                        <p>
-                                            <img src="<?php echo BASE_URL . 'assets/uploads/' . $banner_category; ?>" alt="" style="width: 100%;height:auto;">
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Category Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form_banner_category">
-                                    </td>
-                                </form>
-                            </tr>
-                        </table>
-                    </div>
-
-
-
-                    <div class="tab-pane" id="tab_7">
-                        <form class="form-horizontal" action="" method="post">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Color </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" name="color" class="form-control jscolor" value="<?php echo $color; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form_color">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-
-
-
-
                 </div>
             </div>
-
-
         </div>
     </div>
-
 </section>
 
 <?php require_once('footer.php'); ?>

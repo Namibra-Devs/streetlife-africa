@@ -124,19 +124,6 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 
 
 
-			        <li class="treeview <?php if( ($cur_page == 'page-add.php')||($cur_page == 'page.php')||($cur_page == 'page-edit.php') ) {echo 'active';} ?>">
-			          <a href="page.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Page</span>
-			          </a>
-			        </li>
-
-
-			        <li class="treeview <?php if( ($cur_page == 'menu-add.php')||($cur_page == 'menu.php')||($cur_page == 'menu-edit.php') ) {echo 'active';} ?>">
-			          <a href="menu.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Menu</span>
-			          </a>
-			        </li>
-
 
 			        <li class="treeview <?php if( ($cur_page == 'language.php') ) {echo 'active';} ?>">
 			          <a href="language.php">

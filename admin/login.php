@@ -4,8 +4,10 @@ session_start();
 include("config.php");
 $error_message='';
 
-if(isset($_POST['form1'])) {
-        
+// check if login button is clicked
+if(isset($_POST['login'])) {
+    
+	// check whether email and password fields are not empty before passing data
     if(empty($_POST['email']) || empty($_POST['password'])) {
         $error_message = 'Email and/or Password can not be empty<br>';
     } else {
@@ -33,81 +35,60 @@ if(isset($_POST['form1'])) {
             }
         }
     }
-
-    
 }
 ?>
-<!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<link rel="stylesheet" href="css/datepicker3.css">
-	<link rel="stylesheet" href="css/all.css">
-	<link rel="stylesheet" href="css/select2.min.css">
-	<link rel="stylesheet" href="css/dataTables.bootstrap.css">
-	<link rel="stylesheet" href="css/AdminLTE.min.css">
-	<link rel="stylesheet" href="css/_all-skins.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Oswald:wght@300;600;700&family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@300;600;700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="style.css">
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Admin | login</title>
 </head>
 
-<body class="hold-transition login-page sidebar-mini">
-
-<div class="login-box">
-	<div class="login-logo">
-		<b>Admin Panel</b>
-	</div>
-  	<div class="login-box-body">
-    	<p class="login-box-msg">Log in to start your session</p>
-    
-	    <?php 
-	    if( (isset($error_message)) && ($error_message!='') ):
-	        echo '<div class="error">'.$error_message.'</div>';
-	    endif;
-	    ?>
-
-		<form action="" method="post">
-			<div class="form-group has-feedback">
-				<input class="form-control" placeholder="Email address" name="email" type="email" autocomplete="off" autofocus>
-			</div>
-			<div class="form-group has-feedback">
-				<input class="form-control" placeholder="Password" name="password" type="password" autocomplete="off" value="">
-			</div>
-			<div class="row">
-				<div class="col-xs-8"></div>
-				<div class="col-xs-4">
-					<input type="submit" class="btn btn-primary btn-block btn-flat login-button" name="form1" value="Log In">
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-
-
-<script src="js/jquery-2.2.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/dataTables.bootstrap.min.js"></script>
-<script src="js/select2.full.min.js"></script>
-<script src="js/jquery.inputmask.js"></script>
-<script src="js/jquery.inputmask.date.extensions.js"></script>
-<script src="js/jquery.inputmask.extensions.js"></script>
-<script src="js/moment.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/icheck.min.js"></script>
-<script src="js/fastclick.js"></script>
-<script src="js/jquery.sparkline.min.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
-<script src="js/app.min.js"></script>
-<script src="js/demo.js"></script>
-
+<body>
+    <div class="login-container">
+        <div class="loginbox">
+            <div class="login-wrap">
+                <h1>Admin Login</h1>
+                <p>Access to our dashboard</p>
+            </div>
+            <p style="color: red; padding-bottom:1rem" >
+                <?php echo $error_message; ?>
+            </p>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="text" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="email">Password:</label>
+                    <input class="form-control" type="password" name="password" id="password">
+                </div>
+                <div class="form-group submit">
+                    <input class="login-submit" type="submit" name="login">
+                    <!-- <a href="./dashboard.php" class="login-submit">Login</a> -->
+                </div>
+                <div class="form-group align-right">
+                    <a class="forgot-password" href="#">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

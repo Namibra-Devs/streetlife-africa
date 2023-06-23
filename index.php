@@ -101,26 +101,19 @@
 
     <!-- About Section -->
     <section>
+      <?php 
+        $about_details = getWebsiteDetails();
+        $about_title = $about_details['home_about_title'];
+        $about_content = $about_details['home_about_content'];
+        $about_img = $about_details['home_about_img'];
+      ?>
       <div class="about-section">
         <div class="about-img">
-          <img class="rounded-lg" src="./images/who-we-are.jpg" alt="">
+          <img class="rounded-lg" src="./assets/uploads/<?php echo $about_img ?>" alt="<?php echo $about_title ?>">
         </div>
         <div class="about-text">
-          <h3 class="about-header">Who We Are...</h3>
-          <!-- <div class="lg:w-1/2 w-full h-full rounded-lg lg:hidden block">
-          <img class="rounded-lg w-full lg:h-full md:h-80 h-full" src="/assets/imgs/hero-img.jpg" alt="">
-        </div> -->
-          <p><strong>JM STREET-LIFE STUDIOS</strong> is a leading production company that specializes in producing
-            top-notch
-            entertainment and lifestyle events. We produce a wide range of events including music festivals, art
-            shows, parties, corporate events, weddings, and more. Our team is dedicated to providing unique and
-            memorable experiences for our clients and guests.
-            <br><br>
-            <strong>At JM STREET-LIFE STUDIOS</strong>, we have a deep passion for transforming Africa into a better
-            place, and we
-            believe that our productions can play a significant role in achieving this goal. We are committed to using
-            our platform to showcase the beauty, diversity, and richness of African culture to the world.
-          </p>
+          <h3 class="about-header"><?php echo $about_title ?></h3>
+          <p><?php echo $about_content ?></p>
         </div>
       </div>
     </section>
@@ -128,20 +121,26 @@
     <!-- Experience section-->
 
     <section>
+      <?php 
+        $counter = getWebsiteDetails();
+        $experience_count = $counter['counter_1_value'];
+        $events_count = $counter['counter_2_value'];
+        $members_count = $counter['counter_3_value'];
+      ?>
       <div class="experience">
         <div>
           <p class="text-2xl">
-            <span class="text-3xl" data-target="5">3+</span> Years of Experience
+            <span class="text-3xl" data-target="5"><?php echo $experience_count ?>+</span> Years of Experience
           </p>
         </div>
         <div>
           <p class="text-2xl">
-            <span class="text-3xl count" data-target="25">100+</span> Events Organized
+            <span class="text-3xl count" data-target="25"><?php echo $events_count ?>+</span> Events Organized
           </p>
         </div>
         <div>
           <p class="text-2xl">
-            <span class="text-3xl count" data-target="150">50+</span> Team Members
+            <span class="text-3xl count" data-target="150"><?php echo $members_count ?>+</span> Team Members
           </p>
         </div>
       </div>
