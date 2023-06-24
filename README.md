@@ -1,25 +1,12 @@
 ## STREETLIFE AFRICA
 
 
-## Project Structure
-
-The project follows a standard structure:
-
-streetlife-africa/
-├── css/                [Folder for css files]
-│   └── style.css
-├── images/             [Folder for image assets]
-├── js/                 [Folder for javascript files]
-├── index.html          [Project entery point]
-└── README.md           [README file]
-
 ## Getting Started
 
 To get started with the project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Namibra-Devs/streetlife-africa.git`
 2. Navigate to the project directory: `cd streetlife-africa/`
-3. Open `index.html` in your preferred web browser to view the project.
 
 ## BEM CSS Methodology
 

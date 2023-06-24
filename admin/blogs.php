@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('./inc/header.php'); ?>
 
 <section class="content-header">
 	<div class="content-header-left">
@@ -113,4 +113,4 @@
 </div>
 
 
-<?php require_once('footer.php'); ?>
+<?php require_once('./inc/footer.php'); ?>

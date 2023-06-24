@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('./inc/header.php'); ?>
 
 <?php
 if(isset($_POST['form1'])) {
@@ -236,4 +236,4 @@ foreach ($result as $row) {
 
 </section>
 
-<?php require_once('footer.php'); ?>
+<?php require_once('./inc/footer.php'); ?>

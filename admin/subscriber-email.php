@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('./inc/header.php'); ?>
 
 <?php
 // After form submit checking everything for email sending
@@ -121,4 +121,4 @@ if(isset($_POST['form1']))
 
 
 
-<?php require_once('footer.php'); ?>
+<?php require_once('./inc/footer.php'); ?>

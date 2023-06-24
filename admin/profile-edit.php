@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('./inc/header.php'); ?>
 
 <?php
 if(isset($_POST['form1'])) {
@@ -209,4 +209,4 @@ if(isset($_POST['form3'])) {
 	</div>
 </section>
 
-<?php require_once('footer.php'); ?>
+<?php require_once('./inc/footer.php'); ?>

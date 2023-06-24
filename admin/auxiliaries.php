@@ -14,7 +14,7 @@
 
     // get blogs function 
     function getBlogs() {
-        include('config.php');
+        include('./database/config.php');
         $statement = $pdo->prepare("SELECT blog_title, blog_content_short, blog_id, blog_date, photo FROM tbl_blogs");
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@
 
     // Social icons function
     function getSocialIcons() {
-        include('config.php');
+        include('./database/config.php');
         $statement = $pdo->prepare("SELECT * FROM tbl_social");
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);							
