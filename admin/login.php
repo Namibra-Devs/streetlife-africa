@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include("config.php");
+include('./database/config.php');
 $error_message='';
 
 // check if login button is clicked

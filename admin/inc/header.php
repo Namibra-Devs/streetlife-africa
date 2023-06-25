@@ -147,6 +147,21 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 						</ul>
 					</li>
 
+					<!-- Performers -->
+					<li class="treeview <?php if( ($cur_page == 'performer-category-add.php')||($cur_page == 'performer-category.php')||($cur_page == 'performer-category-edit.php') || ($cur_page == 'performer-add.php')||($cur_page == 'performer.php')||($cur_page == 'performer-edit.php') ) {echo 'active';} ?>">
+						<a href="#">
+							<i class="fa fa-hand-o-right"></i>
+							<span>Perfomers</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="performer-category.php"><i class="fa fa-circle-o"></i>Category</a></li>
+							<li><a href="performer.php"><i class="fa fa-circle-o"></i>Performer</a></li>
+						</ul>
+					</li>
+
 										
 
 					<li class="treeview <?php if( ($cur_page == 'designation-add.php')||($cur_page == 'designation.php')||($cur_page == 'designation-edit.php') || ($cur_page == 'team-member-add.php')||($cur_page == 'team-member.php')||($cur_page == 'team-member-edit.php') ) {echo 'active';} ?>">
@@ -197,6 +212,8 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 			            <i class="fa fa-hand-o-right"></i> <span>Social Media</span>
 			          </a>
 			        </li>
+
+
 
 			        <li class="treeview <?php if( ($cur_page == 'subscriber.php')||($cur_page == 'subscriber-email.php') ) {echo 'active';} ?>">
 						<a href="#">

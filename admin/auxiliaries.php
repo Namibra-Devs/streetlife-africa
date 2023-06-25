@@ -3,7 +3,7 @@
     // get company name function
     function getWebsiteDetails()
     {
-        include('config.php');
+        include('./admin/database/config.php');
         $statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@
 
     // get blogs function 
     function getBlogs() {
-        include('./database/config.php');
+        include('./admin/database/config.php');
         $statement = $pdo->prepare("SELECT blog_title, blog_content_short, blog_id, blog_date, photo FROM tbl_blogs");
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@
 
     // Social icons function
     function getSocialIcons() {
-        include('./database/config.php');
+        include('./admin/database/config.php');
         $statement = $pdo->prepare("SELECT * FROM tbl_social");
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);							
