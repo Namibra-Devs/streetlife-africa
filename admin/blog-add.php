@@ -110,7 +110,7 @@ if(isset($_POST['form1'])) {
 		<h1>Add blog</h1>
 	</div>
 	<div class="content-header-right">
-		<a href="blog.php" class="btn btn-primary btn-sm">View All</a>
+		<a href="blogs.php" class="btn btn-primary btn-sm">View All</a>
 	</div>
 </section>
 

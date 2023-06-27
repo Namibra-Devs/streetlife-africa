@@ -583,7 +583,6 @@ svg {
   top: 30.57px;
 
   border-radius: 12px;
-  background: url('../images/past-performer.png');
   
 }
 
@@ -615,8 +614,15 @@ svg {
   line-height: 30px;
 }
 
+.past-performer__socials {
+  padding-top: 2rem;
+}
+
+.past-performer__socials ul {
+  display: flex;
+}
+
 .past-performer__socials a {
-  display: inline-block;
   margin-right: 10px;
   color: #262626;
   font-size: 27px;
@@ -698,6 +704,52 @@ svg {
 .row-span {
   width: 65%;
 }
+
+
+/*  */
+
+#gallery {
+  padding: 60px;
+  overflow: hidden;
+}
+
+#gallery .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+#gallery .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #F07605;
+}
+
+#gallery .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #F07605;
+}
+
+#gallery .swiper-slide-active {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  #gallery .swiper-wrapper {
+    padding: 40px 0;
+  }
+
+  #gallery .swiper-slide-active {
+    border: 5px solid #F07605;
+    padding: 4px;
+    background: #fff;
+    z-index: 1;
+    transform: scale(1.15);
+    margin-top: 6px;
+  }
+}
+
+/*  */
 
 /* Gallery section ends */
 
