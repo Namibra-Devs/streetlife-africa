@@ -1,3 +1,7 @@
+<?php
+  include('./admin/database/config.php')
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +20,18 @@
 
   <!-- Bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+
+  <!-- <link rel="stylesheet" href="./assets/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="./assets/css/slicknav.css">
+	<link rel="stylesheet" href="./assets/css/superfish.css">
+	<link rel="stylesheet" href="./assets/css/animate.css">
+	
+	<link rel="stylesheet" href="./assets/css/jquery.bxslider.css">
+	<link rel="stylesheet" href="./assets/css/hover.css">
+	<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/responsive.css">
 
 
   <!-- Font Awesome -->
@@ -59,71 +75,67 @@
   <!-- Main Content -->
   <main>
     <!-- Gallery Section -->
-    <section>
-      <div class="container">
-        <h4 class="section-title text-3xl">check our gallery</h4>
-        <p class="gallery-para">A journey through artistic expression where every piece tells a story.</p>
-        <div class="section__gallery">
-          <div class="section__gallery__picture">
-            <img src="./images/gallery-img1.png" alt="">
-            <p class="text-sm uppercase">GHANA DRIVE-IN CONCERT, 2023</p>
-          </div>
-          <div class="section__gallery__picture">
-            <img src="./images/gallery-img2.png" alt="">
-            <p class="text-sm uppercase">GHANA DRIVE-IN CONCERT, 2023</p>
-          </div>
-          <div class="section__gallery__picture">
-            <img src="./images/gallery-img3.png" alt="">
-            <p class="text-sm uppercase">GHANA DRIVE-IN CONCERT, 2023</p>
-          </div>
-          <div class="section__gallery__picture row-span">
-            <img src="./images/gallery-img4.png" alt="">
-            <p class="text-sm uppercase">FRANCIS WEDS JANE, 2023</p>
-          </div>
-          <div class="section__gallery__picture">
-            <img src="./images/gallery-img5.png" alt="">
-            <p class="text-sm uppercase">FRANCIS WEDS JANE, 2023</p>
-          </div>
-        </div>
-
-        <div class="flex-btn">
-          <a href="" class="view-all">View
-            All <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75">
-              </path>
-            </svg></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <div class="contact-content">
-        <div class="contact-text">
-          <h4>LET'S CREATE LASTING EXPERIENCES TOGETHER</h4>
-          <p>At JM STREET-LIFE STUDIOS, we believe in the power of collaboration. Whether you're looking to plan an event, tell a story, or develop your talent, we're here to help. So let's connect and see what amazing things we can create together!</p>
-        </div>
     
-        <div class="form">
-          <div class="contact-form">
-            <form action="" class="form">
-              <div class="form-group">
-                <label for="name" class="text-slate-100">Name</label>
-                <input type="text" name="name" id="name">
-              </div>
-              <div class="form-group">
-                <label for="email" class="text-slate-100">Email</label>
-                <input type="email" name="email" id="email">
-              </div>
-              <div class="form-group">
-                <label for="message" class="text-slate-100">Message</label>
-                <textarea name="message" id="message" cols="30" rows="5"></textarea>
-              </div>
-              <div class="form-group">
-                <button type="submit">Send Message</button>
-              </div>
-            </form>
+    <section class="gallery">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+    
+            <ul class="gallery-menu">
+              <li class="filter" data-filter="all" data-role="button">All</li>
+              <?php
+              $statement = $pdo->prepare("SELECT * FROM tbl_category_photo WHERE status=?");
+              $statement->execute(array('Active'));
+              $result = $statement->fetchAll(PDO::FETCH_ASSOC);							
+              foreach ($result as $row) {
+                $temp_string = strtolower($row['p_category_name']);
+                  $temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+                  ?>
+                  <li class="filter" data-filter=".<?php echo $temp_slug; ?>" data-role="button"><?php echo $row['p_category_name']; ?></li>
+                <?php
+              }
+              ?>
+            </ul>
+    
+            <div id="mix-container">
+              <?php
+              $i=0;
+              $statement = $pdo->prepare("SELECT
+                                           t1.photo_id,
+                            t1.photo_caption,
+                            t1.photo_name,
+                            t1.p_category_id,
+                            t2.p_category_id,
+                            t2.p_category_name,
+                            t2.status
+                                          FROM tbl_photo t1
+                                          JOIN tbl_category_photo t2
+                                          ON t1.p_category_id = t2.p_category_id 
+                                          ");
+              $statement->execute();
+              $result = $statement->fetchAll(PDO::FETCH_ASSOC);							
+              foreach ($result as $row) {
+                $i++;
+                $temp_string = strtolower($row['p_category_name']);
+                  $temp_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+                ?>
+                <div class="col-md-4 mix <?php echo $temp_slug; ?> all" data-my-order="<?php echo $i; ?>">
+                  <div class="inner">
+                    <div class="photo" style="background-image:url(./assets/uploads/<?php echo $row['photo_name']; ?>);"></div>
+                    <div class="overlay"></div>
+                    <div class="icons">
+                      <div class="icons-inner">
+                        <a class="gallery-photo" href="./assets/uploads/<?php echo $row['photo_name']; ?>"><i class="fa fa-search-plus"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <?php
+              }
+              ?>
+    
+            </div>
+    
           </div>
         </div>
       </div>
@@ -180,6 +192,23 @@
       </div>
     </footer>    
   </main>
+
+  <script src="./assets/js/main.js"></script>
+
+  <script src="./assets/js/jquery-2.2.4.min.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script>
+	<script src="./assets/js/jquery.slicknav.min.js"></script>	
+	<script src="./assets/js/hoverIntent.js"></script>
+	<script src="./assets/js/superfish.js"></script>
+	<script src="./assets/js/owl.carousel.min.js"></script>
+	<script src="./assets/js/owl.animate.js"></script>
+	<script src="./assets/js/wow.min.js"></script>
+	<script src="./assets/js/jquery.bxslider.min.js"></script>
+	<script src="./assets/js/jquery.mixitup.min.js"></script>
+	<script src="./assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="./assets/js/waypoints.min.js"></script>
+	<script src="./assets/js/jquery.counterup.min.js"></script>
+	<script src="./assets/js/custom.js"></script>
 
 </body>
 
