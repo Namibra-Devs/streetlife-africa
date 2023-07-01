@@ -1,0 +1,334 @@
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .header__navbar {
+    width: 100%;
+  }
+
+  .header__nav-list {
+    display: none;
+  }
+}
+
+
+/**
+* Mobile Navigation 
+*/
+.mobile-nav-toggle {
+  color: #F07605;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+.mobile-nav-toggle.bi-x {
+  color: #F07605;
+  ;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .navbar ul {
+    display: none; 
+  }
+}
+
+.navbar-mobile {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #F6F6F6;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.navbar-mobile .mobile-nav-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.navbar-mobile ul {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow-y: auto;
+  transition: 0.3s;
+}
+
+.navbar-mobile a,
+.navbar-mobile a:focus {
+  padding: 10px 20px;
+  font-size: 15px;
+  color: #454545;
+}
+
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover>a {
+  color: #f99a43;
+}
+
+
+/* Hero section */
+@media (max-width: 991px) {
+  .hero-header {
+    flex-direction: column;
+    position: unset;
+  }
+
+  .dark-bg {
+    padding: 6rem 1rem;
+    position: unset;
+    width: 100%;
+  }
+
+  .hero-banner {
+    position: unset;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .hero-title {
+    font-size: 39px;
+    text-align: center;
+  }
+
+  .hero-b {
+    position: unset;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .img-bg {
+    width: 100%;
+    position: relative;
+  }
+
+  .hero-para {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .bg-img {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+    .about-section {
+      display: block;
+    }
+  
+    .about-img {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .about-text {
+      width: 100%;
+    }
+  
+    .about-text {
+      margin-left: 0;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .about-section {
+      padding: 0 1rem;
+    }
+  
+    .about-img {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .about-text {
+      font-size: 1rem;
+    }
+  }
+
+  
+  /* Experience section */
+  @media (max-width: 768px) {
+    .experience {
+      flex-direction: column;
+      align-items: normal;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .experience {
+      padding: 0 1rem;
+    }
+
+    .count {
+      font-size: 1rem;
+    }
+
+    .count {
+      data-target: none;
+    }
+  }
+
+
+  /* Speciality section */
+  @media (max-width: 768px) {
+    .flex {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .bg-primary-clr,
+    .bg-dark,
+    .bg-dark-800 {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .flex {
+      align-items: center;
+    }
+
+    .bg-primary-clr,
+    .bg-dark,
+    .bg-dark-800 {
+      width: 100%;
+    }
+  }
+
+/* Events section */
+/* @media (max-width: 600px) {
+    .flex-events {
+      flex-direction: column;
+    }
+    .flex-event {
+      width: 100%;
+    }
+    .date {
+      margin-bottom: 10px;
+    }
+    .event-details {
+      padding: 0 15px;
+    }
+    .img-div {
+      display: none;
+    }
+  } */
+  
+@media (max-width: 768px) {
+    .flex-events {
+      flex-direction: column-reverse;
+    }
+    .flex-event {
+      
+    }
+    .date {
+      padding: 0;
+      padding-left: 3rem;
+    }
+    .event-details {
+      padding: 0 15px;
+    }
+    .img-div {
+      width: 375px;
+      
+    }
+}
+
+/* Performers */
+@media (max-width: 600px) {
+    .past-performer {
+        flex-direction: column;
+    }
+  .past-performer__img-container,
+  .past-performer__profile-content {
+    width: 100%;
+  }
+}
+
+/* gallery */ 
+@media (max-width: 600px) {
+    .section__gallery {
+        flex-direction: column
+    }
+    .section__gallery__picture {
+        width: 100%;
+    }
+
+    .past-performer-overlay {
+      width: 220px;
+      height: 470px;
+      left: 35px;
+      top: 31.31px;
+      transform: rotate(-6.71deg);
+    }
+
+    .past-performer__profile-img {
+      width: 255px;
+      height: 483px;
+      left: 26.93px;
+      top: 30.57px;
+    }
+}
+
+/* contact section */
+@media (max-width: 600px) {
+  .contact-text h4 {
+    font-size: 40px;
+  }
+}
+
+/* Blog */
+@media (max-width: 600px) {
+    .blog-section {
+        flex-direction: column;
+    }
+}
+
+/* Footer */
+@media (max-width: 600px) {
+    footer {
+        padding: 30px 30px;
+    }
+    .footer-content {
+        flex-direction: column;
+    }
+}
+  
