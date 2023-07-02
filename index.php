@@ -54,6 +54,7 @@ include('./admin/database/config.php')
           </div>
         </ul>
       </div>
+      <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
   </header>
 
@@ -443,9 +444,11 @@ include('./admin/database/config.php')
   <script src="./assets/glightbox/js/glightbox.min.js"></script>
   <script src="./assets/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
+  <!-- S File -->
   <script src="./assets/js/custom.js"></script>
+  <script src="main.js"></script>
 
 </body>
 
 </html>
+
