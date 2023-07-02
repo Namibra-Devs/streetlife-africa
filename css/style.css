@@ -346,6 +346,12 @@ svg {
   font-family: var(--oswald);
 }
 
+@media (max-width: 991px) {
+  .text-3xl {
+    font-size: 2rem;
+  }
+}
+
 .section-title {
   margin-bottom: 2rem;
 }
@@ -390,7 +396,7 @@ svg {
 .bg-dark-800 .text-2xl {
   font-family: var(--oswald);
   font-weight: var(--bolder);
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 /* Events */
@@ -704,10 +710,8 @@ svg {
 /* Animated text starts */
 #scroll-text__container {
   align-items: center;
-  padding: 8px 0px;
   width: 1140px;
   height: 64px;
-
   border-width: 1px 0px;
   border-style: solid;
   border-color: #454545;
