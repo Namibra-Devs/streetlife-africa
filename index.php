@@ -54,14 +54,6 @@ include('./admin/database/config.php')
           </div>
         </ul>
       </div>
-      <svg class="bars" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <title>toggle Menu</title>
-        <path class="open-btn" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-        d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
-
-        <path class="close-btn" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-        stroke-linejoin="round" class="close-btn hidden text-primary-600"></path>
-      </svg>
     </nav>
   </header>
 
