@@ -64,6 +64,7 @@ include('./admin/database/config.php')
     <!-- Hero Header -->
     <section class="hero-section">
       <div class="hero-header">
+        <div class="dark-bg">
         <div class="hero-banner">
           <h4 class="hero-title">
             <?php
@@ -78,8 +79,7 @@ include('./admin/database/config.php')
             <p class="scroll-down">Scroll Down For More</p>
           </div>
         </div>
-
-        <div class="dark-bg"></div>
+        </div>
 
         <div class="img-bg">
           <div class="hero-para">
