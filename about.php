@@ -1,64 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/about.css">
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Oswald:wght@300;600;700&family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@300;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>JM Street-Life Africa</title>
-</head>
-
-<body>
-    <header class="header">
-        <nav class="header__navbar">
-            <div class="header__navbar--logo"><a href="index.html">JM Street-Life <br> Studio</a></div>
-            <div>
-                <ul class="header__nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="events.html">Events</a>
-                    <li><a href="gallery.html">Gallery</a>
-                    <li><a href="blog.html">Blog</a>
-                    </li>
-                    <div class="contact__button">
-                        <a href="contact.html" class="contact__button__link">Contact Us</a>
-                    </div>
-                </ul>
-            </div>
-            <svg class="bars" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"
-                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <title>toggle Menu</title>
-                <path class="open-btn" stroke-linecap="round" stroke-linejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
-
-                <path class="close-btn" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                stroke-linejoin="round" class="close-btn hidden text-primary-600"></path>
-            </svg>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main>
+<?php include('header.php') ?>
+<main>
 
         <section class="about-header">
             <h4 class="section-title">About JM StreetLife Studio</h4>
@@ -170,8 +111,100 @@
 
         </section>
 
+        <!-- Team section -->
         <section class="team">
-            <h4 class="section-title text-3xl">Meet our amazing team</h4>
+        <div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="heading wow fadeInUp">
+					<h2>Meet our Team</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				
+				<!-- Team Member Carousel Start -->
+				<div class="team-member-carousel">
+					<?php
+					$statement = $pdo->prepare("SELECT 
+												
+												t1.id,
+												t1.name,
+												t1.slug,
+												t1.designation_id,
+												t1.photo,
+												t1.facebook,
+												t1.twitter,
+												t1.linkedin,
+												t1.youtube,
+												t1.google_plus,
+												t1.instagram,
+												t1.flickr,
+
+												t2.designation_id,
+												t2.designation_name
+
+					                           FROM tbl_team_member t1
+					                           JOIN tbl_designation t2
+					                           ON t1.designation_id = t2.designation_id
+					                           WHERE t1.status = ?
+					                           ");
+					$statement->execute(array('Active'));
+					$result = $statement->fetchAll(PDO::FETCH_ASSOC);							
+					foreach ($result as $row) {
+						?>
+						<div class="item wow fadeInUp">
+							<div class="thumb">
+								<div class="photo" style="background-image:url(./assets/uploads/<?php echo $row['photo']; ?>);"></div>
+								<div class="overlay"></div>
+								<div class="social-icons">
+									<ul>
+										<?php if($row['facebook']!=''): ?>
+											<li><a href="<?php echo $row['facebook']; ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['twitter']!=''): ?>
+											<li><a href="<?php echo $row['twitter']; ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['linkedin']!=''): ?>
+											<li><a href="<?php echo $row['linkedin']; ?>" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['youtube']!=''): ?>
+											<li><a href="<?php echo $row['youtube']; ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['google_plus']!=''): ?>
+											<li><a href="<?php echo $row['google_plus']; ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['instagram']!=''): ?>
+											<li><a href="<?php echo $row['instagram']; ?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
+										<?php endif; ?>
+
+										<?php if($row['flickr']!=''): ?>
+											<li><a href="<?php echo $row['flickr']; ?>" target="_blank"><i class="fa fa-flickr"></i></a></li>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div>
+							<div class="text">
+								<h3><a href="#"><?php echo $row['name']; ?></a></h3>
+								<p><?php echo $row['designation_name']; ?></p>
+							</div>
+						</div>
+						<?php
+					}
+					?>					
+				</div>
+				<!-- Team Member Carousel End -->
+
+			</div>
+		</div>
+	</div>
+            <!-- <h4 class="section-title text-3xl">Meet our amazing team</h4>
             <div class="team-section">
                 <div class="team-member">
                     <img src="./images/team/ismail.png" alt="" class="team-member__image">
@@ -183,7 +216,7 @@
                       </div>
                     </div>
                   </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- Contact Section -->
@@ -219,59 +252,6 @@
                 </div>
             </div>
         </section>
+</main>
 
-
-        <!-- Footer Section -->
-        <footer>
-            <div class="footer-content">
-                <div class="content-section">
-                    <h4>JM Street-Life Studio</h4>
-                    <p>Creating unforgettable experiences that celebrate African culture and bring people together.</p>
-                    <p>+2338096542356</p>
-                    <a id="mailto" href="mailto:hello@jmstreetlifestudios.com">hello@jmstreetlifestudios.com</a>
-                    <div class="social-icons">
-                        <a href=""><i class="fab fa-facebook"></i></a>
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="quick-links">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About Us</a>
-                    <a href="events.html">Events</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="blog.html">Blog</a>
-                </div>
-
-                <div class="instagram-feed">
-                    <h4>Instagram Feed</h4>
-                    <div>
-                        <a href=""><img src="./images/intagram_feed/feed1.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed2.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed3.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed4.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed5.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed6.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed7.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed8.png" alt=""></a>
-                        <a href=""><img src="./images/intagram_feed/feed9.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- horizonal line -->
-            <hr id="footer-hr">
-
-            <div class="footer-bottom">
-                &copy; JM Street-Life Studio
-                <span id="current-year"></span>
-            </div>
-        </footer>
-    </main>
-
-</body>
-
-</html>
+<?php include('footer.php');

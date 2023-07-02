@@ -153,9 +153,10 @@
   
   
   
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
       .about-section {
         display: block;
+        padding: 20px;
       }
     
       .about-img {
@@ -173,9 +174,6 @@
     }
     
     @media (max-width: 576px) {
-      .about-section {
-        padding: 0 1rem;
-      }
     
       .about-img {
         width: 100%;
@@ -212,10 +210,7 @@
   
   
     /* Speciality section */
-    @media (max-width: 768px) {
-      .text-2xl {
-        margin-bottom: 3rem;
-      }
+    @media (max-width: 991px) {
       .flex {
         flex-direction: column;
         padding: 20px;
@@ -229,6 +224,7 @@
   
       .section-title {
         display: none;
+        padding-left: 20px;
       }
     }
   
@@ -381,4 +377,21 @@
           flex-direction: column;
       }
   }
-    
+
+  /* our goal */
+  @media (max-width: 991px) {
+    .our-goal {
+      padding: 20px;
+    }
+    .our-goal__content {
+      flex-direction: column;
+    }
+    .our-goal__text {
+      margin: 0;
+      width: 100%;
+    }
+    .our-goal__img {
+      width: 100%;
+      padding-top: 3rem;
+    }
+  }
