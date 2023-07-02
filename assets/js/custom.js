@@ -302,6 +302,15 @@
   }
 
   /**
+     * Mobile nav toggle
+     */
+  on('click', '.mobile-nav-toggle', function(e) {
+    select('#navbar').classList.toggle('navbar-mobile')
+    this.classList.toggle('bi-list')
+    this.classList.toggle('bi-x')
+  })
+
+  /**
    * Easy on scroll event listener 
    */
   const onscroll = (el, listener) => {
@@ -435,14 +444,4 @@
     })
   });
 
-
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
 })()

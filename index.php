@@ -38,7 +38,7 @@ include('./admin/database/config.php')
 
 <body>
   <header class="header">
-    <nav class="header__navbar">
+    <nav id="navbar" class="header__navbar">
       <div class="header__navbar--logo"><a href="index.html"><?php $websiteName = getWebsiteDetails();
                                                               echo $websiteName['website_name']; ?></a></div>
       <div>
