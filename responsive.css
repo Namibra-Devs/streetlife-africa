@@ -240,42 +240,28 @@
       width: 100%;
     }
   }
-
-/* Events section */
-/* @media (max-width: 600px) {
-    .flex-events {
-      flex-direction: column;
-    }
-    .flex-event {
-      width: 100%;
-    }
-    .date {
-      margin-bottom: 10px;
-    }
-    .event-details {
-      padding: 0 15px;
-    }
-    .img-div {
-      display: none;
-    }
-  } */
   
 @media (max-width: 768px) {
     .flex-events {
       flex-direction: column-reverse;
+      padding: 20px;
     }
     .flex-event {
-      
+      padding-top: 20px;
     }
     .date {
-      padding: 0;
-      padding-left: 3rem;
+      margin-top: 8rem;
+      /* margin-left: -6rem; */
     }
     .event-details {
-      padding: 0 15px;
+      padding-left: 2rem;
+    }
+    .event-details p {
+      width: 100%
     }
     .img-div {
-      width: 375px;
+      width: 100%;
+      margin: 0;
       
     }
 }
