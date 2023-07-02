@@ -213,6 +213,9 @@
   
     /* Speciality section */
     @media (max-width: 768px) {
+      .text-2xl {
+        margin-bottom: 3rem;
+      }
       .flex {
         flex-direction: column;
         padding: 20px;
@@ -254,7 +257,7 @@
         /* margin-left: -6rem; */
       }
       .event-details {
-        padding-left: 2rem;
+        /* padding-left: 2rem; */
       }
       .event-details p {
         width: 100%

@@ -69,42 +69,45 @@
             $photo               = $event['photo'];
             echo '
             <div class="flex-events">
-                <div class="flex-event">
-                    <div class="date">
-                    <p class="event-text"><svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        </svg>'.$event_date.'</p>
-                    </div>
-                    <div class="event-details">
-                    <h4 class="text-xl">'.$event_title.'</h4>
-                    <p>'.$event_content_short.'</p>
-                    <div>
-        
-                        <div class="date-flex">
-                        <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                        <span>10:00 AM</span>
-                        </div>
-                        <div class="date-flex">
-                        <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
-                            </path>
-                        </svg>
-                        <span>'.$event_venue.'</span>
-                        </div>
-                        <div class="button-div">
-                        <a href="'.$event_link.'" target="_blank" class="get-ticket">GET YOUR
-                            TICKETS</a>
-                        </div>
-                    </div>
-                    </div>
-                <div class="img-div">
-                    <img class="event-img" src="./assets/uploads/'.$photo.'" alt="'.$photo.'">
-                </div>
-                 </div>
+        <div class="flex-event">
+          <div class="date">
+            <p class="event-text">'.$event_date.'</p>
+          </div>
+          <div class="event-details">
+            <h4 class="text-xl">'.$event_title.'</h4>
+            <p>'.$event_content_short.'</p>
+            <div>
+
+              <div class="date-flex">
+                <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
+                  </path>
+                </svg>
+                <span>10:00 AM</span>
+              </div>
+              <div class="date-flex">
+                <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                  </path>
+                </svg>
+                <span>'.$event_venue.'</span>
+              </div>
+              <div class="button-div">
+                <a href="'.$event_link.'" class="get-ticket">GET YOUR
+                  TICKETS</a>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="img-div">
+          <img class="event-img" src="./assets/uploads/'.$photo.'" alt="">
+        </div>
+      </div>
             ';
         }
     }
