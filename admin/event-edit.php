@@ -228,7 +228,7 @@ foreach ($result as $row) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="" class="col-sm-3 control-label">event Publish Date <span>*</span></label>
+							<label for="" class="col-sm-3 control-label">event Date <span>*</span></label>
 							<div class="col-sm-2">
 								<input type="text" class="form-control" name="event_date" id="datepicker" value="<?php echo $event_date; ?>">(Format: dd-mm-yy)
 							</div>

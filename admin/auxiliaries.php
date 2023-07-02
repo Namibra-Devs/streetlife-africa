@@ -112,6 +112,18 @@
         }
     }
 
+    function getGallerySlider() {
+      include('./admin/database/config.php');
+      $statement = $pdo->prepare("SELECT * FROM tbl_photo");
+      $statement->execute();
+      $result = $statement->fetchAll();
+
+      foreach ($result as $photo) {
+        echo '
+          <div class="swiper-slide"><a href="./assets/uploads/'.$photo['photo_name'].'" class="gallery-lightbox"><img src="./assets/uploads/'.$photo['photo_name'].'" class="img-fluid" alt=""></a></div>
+        ';
+      }
+    }
 
 
 ?>

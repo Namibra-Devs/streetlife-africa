@@ -218,20 +218,13 @@
   </div>
 </section>
 
-
+<!-- Recent photos -->
 <section>
 <div id="gallery">
   <h4 class="section-title text-3xl">Recent Photos</h4>
   <div class="gallery-slider swiper">
     <div class="swiper-wrapper align-items-center">
-      <div class="swiper-slide"><a href="./images/gallery-img1.png" class="gallery-lightbox"><img src="./images/gallery-img1.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img2.png" class="gallery-lightbox"><img src="./images/gallery-img2.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img3.png" class="gallery-lightbox"><img src="./images/gallery-img3.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img4.png" class="gallery-lightbox"><img src="./images/gallery-img4.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img5.png" class="gallery-lightbox"><img src="./images/gallery-img5.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img1.png" class="gallery-lightbox"><img src="./images/gallery-img1.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img2.png" class="gallery-lightbox"><img src="./images/gallery-img2.png" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a href="./images/gallery-img3.png" class="gallery-lightbox"><img src="./images/gallery-img3.png" class="img-fluid" alt=""></a></div>
+      <?php getGallerySlider() ?>
     </div>
     <div class="swiper-pagination"></div>
   </div>
