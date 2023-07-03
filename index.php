@@ -146,13 +146,6 @@
   <div class="container">
     <div class="past-performance__header">
       <h4 class="text-3xl">MEET PAST PERFORMERS</h4>
-      <div class="">
-        <a href="" class="view-all">View
-          All <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75">
-            </path>
-          </svg></a>
-      </div>
     </div>
 
     <!-- Profile cards -->
@@ -162,7 +155,7 @@
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     foreach ($result as $performer) {
     ?>
-      <div class="past-performer">
+      <div class="past-performer item">
         <div class="past-performer__img-container">
           <div class="past-performer-overlay"></div>
           <div class="past-performer__profile-img" style="background: url(./assets/uploads/<?php echo $performer['photo'] ?>);"></div>
@@ -217,6 +210,7 @@
               ?>
   </div>
 </section>
+
 
 <!-- Recent photos -->
 <section>
