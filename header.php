@@ -10,7 +10,7 @@ include('./admin/database/config.php')
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
+  
   <link rel="stylesheet" href="./css/responsive.css">
 
   <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -22,43 +22,35 @@ include('./admin/database/config.php')
 
   <!-- Bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-  <!-- <link href="./assets/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link href="./assets/aos/aos.css" rel="stylesheet">
-  <link href="./assets/css/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!-- Vendor CSS Filess -->
+  <link href="./assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="./assets/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="./assets/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- pages css files -->
+  <!-- Pages CSS Files -->
   <link rel="stylesheet" href="./css/about.css">
   <link rel="stylesheet" href="./css/events.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/responsive.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/css/slicknav.css">
+  <!-- <link rel="stylesheet" href="./assets/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="./assets/css/superfish.css">
+  <link rel="stylesheet" href="./assets/css/animate.css">
+  
+  <link rel="stylesheet" href="./assets/css/jquery.bxslider.css">
+  <link rel="stylesheet" href="./assets/css/hover.css">
+  <link rel="stylesheet" href="./assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+ 
 
   <title>JM Street-Life Africa</title>
-
-	<link rel="stylesheet" href="./assets/css/slicknav.css">
-  <!-- <link rel="stylesheet" href="./assets/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="./assets/css/superfish.css">
-	<link rel="stylesheet" href="./assets/css/animate.css">
-	
-	<link rel="stylesheet" href="./assets/css/jquery.bxslider.css">
-	<link rel="stylesheet" href="./assets/css/hover.css">
-	<link rel="stylesheet" href="./assets/css/magnific-popup.css">
-	<link rel="stylesheet" href="./assets/css/style.css">
-	<link rel="stylesheet" href="./assets/css/responsive.css">
-
-  <!-- Vendor CSS Files -->
-  <!-- <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
 
 	<script src="./assets/js/modernizr.min.js"></script>
 </head>
@@ -66,8 +58,8 @@ include('./admin/database/config.php')
 <body>
   <header class="header">
     <nav id="navbar" class="header__navbar">
-      <div class="header__navbar--logo"><a href="index.html"><?php $websiteName = getWebsiteDetails();
-                                                              echo $websiteName['website_name']; ?></a></div>
+      <div class="header__navbar--logo"><a href="index.html"><img src="./assets/uploads/<?php $websiteName = getWebsiteDetails();
+                                                              echo $websiteName['logo']; ?>" alt=""></a></div>
       <div>
         <ul class="header__nav-list">
           <li><a href="index.php">Home</a></li>
@@ -77,7 +69,7 @@ include('./admin/database/config.php')
           <li><a href="blog.php">Blog</a>
           </li>
           <div class="contact__button">
-            <a href="contact.html" class="contact__button__link">Contact Us</a>
+            <a href="contact.php" class="contact__button__link">Contact Us</a>
           </div>
         </ul>
       </div>

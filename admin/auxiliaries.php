@@ -25,7 +25,7 @@
         $blog_id = $blog['blog_id'];
         $blog_date = $blog['blog_date'];
            echo  '
-            <div class="blog-post">
+            <div class="blog-post" data-aos="fade-up" data-aos-delay="100">
             <img src="./assets/uploads/'.$blog_image.'" alt="'.$blog_title.'" class="blog-post__image">
             <div class="blog-post__content">
               <p class="blog-post__meta">'.$blog_date.'</p>
@@ -69,7 +69,7 @@
             $photo               = $event['photo'];
             echo '
             <div class="flex-events">
-        <div class="flex-event">
+        <div class="flex-event" data-aos="fade-up" data-aos-delay="100">
           <div class="date">
             <p class="event-text">'.$event_date.'</p>
           </div>

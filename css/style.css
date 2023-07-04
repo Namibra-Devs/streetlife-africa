@@ -549,6 +549,47 @@ svg {
 }
 
 /* More about end */
+
+/*--------------------------------------------------------------
+# Performers section
+--------------------------------------------------------------*/
+.performers .performer-wrap {
+  padding-left: 0;
+}
+
+
+.performers .performers-slider {
+  overflow: hidden;
+}
+
+.performers .performer-item {
+  box-sizing: content-box;
+  padding: 30px 30px 30px 60px;
+  margin: 30px 15px;
+  min-height: 200px;
+  box-shadow: 0px 0px 20px 0px rgba(11, 35, 65, 0.1);
+  position: relative;
+  background: #fff;
+}
+
+
+.performers .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.performers .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #F07605;
+}
+
+.performers .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #F07605;
+}
+
 .past-performance__header {
   margin-bottom: 2rem;
   display: flex;
@@ -1115,7 +1156,7 @@ footer {
 }
 
 #footer-hr {
-  border-color: #FBB575;
+  border: 1px solid #FBB575;
   margin: 2rem;
 }
 
@@ -1314,3 +1355,5 @@ ul.gallery-menu li.filter:nth-last-of-type(1) {
 	width: 100%;
 	height: 250px;
 }
+
+

@@ -56,4 +56,38 @@
     });
   
 
+   /**
+   * Testimonials slider
+   */
+   new Swiper('.perfomers-slider', {
+    speed: 600,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.performer-button-next',
+      prevEl: '.performer-button-prev',
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+
+      1200: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      }
+    }
+  });
+
+
 })()

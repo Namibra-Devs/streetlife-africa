@@ -396,3 +396,15 @@
       padding-top: 3rem;
     }
   }
+
+/* Team section */
+@media (max-width: 991px) {
+  .team-wrapper {
+    flex-direction: column;
+  }
+
+  .member-wrapper {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
