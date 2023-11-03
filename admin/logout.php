@@ -1,4 +1,7 @@
-<?php
-    echo "<script>alert('Logout Successful')</script>";
-    header('location:index.php');
+<?php 
+ob_start();
+session_start();
+include 'config.php'; 
+unset($_SESSION['user']);
+header("location: login.php"); 
 ?>
