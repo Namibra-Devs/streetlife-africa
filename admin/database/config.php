@@ -8,16 +8,16 @@
 	date_default_timezone_set('Asia/Dhaka');
 
 	// Host Name
-	$dbhost = 'sdb-59.hosting.stackcp.net';
+	$dbhost = 'localhost';
 
 	// Database Name
-	$dbname = 'street-life-africa-35303233c860';
+	$dbname = 'streetlifeafrica_db';
 
 	// Database Username
-	$dbuser = 'streetlifeafrica';
+	$dbuser = 'abdul';
 
 	// Database Password
-	$dbpass = 'tBvwpc||JL$N';
+	$dbpass = '';
 
 	// Defining base url
 	// define("BASE_URL", "http://localhost/streetlife-africa");
