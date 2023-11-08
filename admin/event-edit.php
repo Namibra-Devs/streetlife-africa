@@ -1,128 +1,128 @@
 <?php require_once('./inc/header.php'); ?>
 
 <?php
-if(isset($_POST['form1'])) {
+if (isset($_POST['form1'])) {
 	$valid = 1;
 
-	if(empty($_POST['event_title'])) {
+	if (empty($_POST['event_title'])) {
 		$valid = 0;
 		$error_message .= 'event title can not be empty<br>';
 	} else {
 		// Duplicate event_category checking
-    	// current event title that is in the database
-    	$statement = $pdo->prepare("SELECT * FROM tbl_events WHERE event_id=?");
+		// current event title that is in the database
+		$statement = $pdo->prepare("SELECT * FROM tbl_events WHERE event_id=?");
 		$statement->execute(array($_REQUEST['id']));
 		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		foreach($result as $row) {
+		foreach ($result as $row) {
 			$current_event_title = $row['event_title'];
 		}
 
 		$statement = $pdo->prepare("SELECT * FROM tbl_events WHERE event_title=? and event_title!=?");
-    	$statement->execute(array($_POST['event_title'],$current_event_title));
-    	$total = $statement->rowCount();							
-    	if($total) {
-    		$valid = 0;
-        	$error_message .= 'event title already exists<br>';
-    	}
+		$statement->execute(array($_POST['event_title'], $current_event_title));
+		$total = $statement->rowCount();
+		if ($total) {
+			$valid = 0;
+			$error_message .= 'event title already exists<br>';
+		}
 	}
 
-	if(empty($_POST['event_content'])) {
+	if (empty($_POST['event_content'])) {
 		$valid = 0;
 		$error_message .= 'event content can not be empty<br>';
 	}
 
-	if(empty($_POST['event_content_short'])) {
+	if (empty($_POST['event_content_short'])) {
 		$valid = 0;
 		$error_message .= 'event content (short) can not be empty<br>';
 	}
 
-	if(empty($_POST['event_date'])) {
+	if (empty($_POST['event_date'])) {
 		$valid = 0;
 		$error_message .= 'event publish date can not be empty<br>';
 	}
 
-	if(empty($_POST['event_category_id'])) {
+	if (empty($_POST['event_category_id'])) {
 		$valid = 0;
 		$error_message .= 'You must have to select a event_category<br>';
 	}
 
 
 	$path = $_FILES['photo']['name'];
-    $path_tmp = $_FILES['photo']['tmp_name'];
+	$path_tmp = $_FILES['photo']['tmp_name'];
 
-    $previous_photo = $_POST['previous_photo'];
+	$previous_photo = $_POST['previous_photo'];
 
-	if($path!='') {
-        $ext = pathinfo( $path, PATHINFO_EXTENSION );
-        $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' && $ext!='JPG' && $ext!='PNG' && $ext!='JPEG' && $ext!='GIF' ) {
-            $valid = 0;
-            $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
-        }
-    }
+	if ($path != '') {
+		$ext = pathinfo($path, PATHINFO_EXTENSION);
+		$file_name = basename($path, '.' . $ext);
+		if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif' && $ext != 'JPG' && $ext != 'PNG' && $ext != 'JPEG' && $ext != 'GIF') {
+			$valid = 0;
+			$error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
+		}
+	}
 
-	if($valid == 1) {
+	if ($valid == 1) {
 
-		if($_POST['event_slug'] == '') {
-    		// generate slug
-    		$temp_string = strtolower($_POST['event_title']);
-    		$event_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);;
-    	} else {
-    		$temp_string = strtolower($_POST['event_slug']);
-    		$event_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
-    	}
+		if ($_POST['event_slug'] == '') {
+			// generate slug
+			$temp_string = strtolower($_POST['event_title']);
+			$event_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);;
+		} else {
+			$temp_string = strtolower($_POST['event_slug']);
+			$event_slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $temp_string);
+		}
 
-    	// if slug already exists, then rename it
+		// if slug already exists, then rename it
 		$statement = $pdo->prepare("SELECT * FROM tbl_events WHERE event_slug=? AND event_title!=?");
-		$statement->execute(array($event_slug,$current_event_title));
+		$statement->execute(array($event_slug, $current_event_title));
 		$total = $statement->rowCount();
-		if($total) {
-			$event_slug = $event_slug.'-1';
+		if ($total) {
+			$event_slug = $event_slug . '-1';
 		}
 
 		// If previous image not found and user do not want to change the photo
-	    if($previous_photo == '' && $path == '') {
-	    	$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, event_category_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
-	    	$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_date'],$_POST['event_category_id'],$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description'],$_REQUEST['id']));
-	    }
+		if ($previous_photo == '' && $path == '') {
+			$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, event_category_id=?, event_status_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
+			$statement->execute(array($_POST['event_title'], $event_slug, $_POST['event_content'], $_POST['event_content_short'], $_POST['event_date'], $_POST['event_category_id'], $_POST['event_status_id'], $_POST['meta_title'], $_POST['meta_keyword'], $_POST['meta_description'], $_REQUEST['id']));
+		}
 
 		// If previous image found and user do not want to change the photo
-	    if($previous_photo != '' && $path == '') {
-	    	$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, event_category_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
-	    	$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_date'],$_POST['event_category_id'],$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description'],$_REQUEST['id']));
-	    }
+		if ($previous_photo != '' && $path == '') {
+			$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, event_category_id=?, event_status_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
+			$statement->execute(array($_POST['event_title'], $event_slug, $_POST['event_content'], $_POST['event_content_short'], $_POST['event_date'], $_POST['event_category_id'], $_POST['event_status_id'], $_POST['meta_title'], $_POST['meta_keyword'], $_POST['meta_description'], $_REQUEST['id']));
+		}
 
 
-	    // If previous image not found and user want to change the photo
-	    if($previous_photo == '' && $path != '') {
+		// If previous image not found and user want to change the photo
+		if ($previous_photo == '' && $path != '') {
 
-	    	$final_name = 'event-'.$_REQUEST['id'].'.'.$ext;
-            move_uploaded_file( $path_tmp, '../assets/uploads/'.$final_name );
+			$final_name = 'event-' . $_REQUEST['id'] . '.' . $ext;
+			move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
 
-	    	$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, photo=?, event_category_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
-	    	$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_date'],$final_name,$_POST['event_category_id'],$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description'],$_REQUEST['id']));
-	    }
+			$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, photo=?, event_category_id=?, event_status_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
+			$statement->execute(array($_POST['event_title'], $event_slug, $_POST['event_content'], $_POST['event_content_short'], $_POST['event_date'], $final_name, $_POST['event_category_id'], $_POST['event_status_id'], $_POST['meta_title'], $_POST['meta_keyword'], $_POST['meta_description'], $_REQUEST['id']));
+		}
 
-	    
-	    // If previous image found and user want to change the photo
-		if($previous_photo != '' && $path != '') {
 
-	    	unlink('../assets/uploads/'.$previous_photo);
+		// If previous image found and user want to change the photo
+		if ($previous_photo != '' && $path != '') {
 
-	    	$final_name = 'event-'.$_REQUEST['id'].'.'.$ext;
-            move_uploaded_file( $path_tmp, '../assets/uploads/'.$final_name );
+			unlink('../assets/uploads/' . $previous_photo);
 
-	    	$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, photo=?, event_category_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
-	    	$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_date'],$final_name,$_POST['event_category_id'],$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description'],$_REQUEST['id']));
-	    }
+			$final_name = 'event-' . $_REQUEST['id'] . '.' . $ext;
+			move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
 
-	    $success_message = 'event is updated successfully!';
+			$statement = $pdo->prepare("UPDATE tbl_events SET event_title=?, event_slug=?, event_content=?, event_content_short=?, event_date=?, photo=?, event_category_id=?, event_status_id=?, meta_title=?, meta_keyword=?, meta_description=? WHERE event_id=?");
+			$statement->execute(array($_POST['event_title'], $event_slug, $_POST['event_content'], $_POST['event_content_short'], $_POST['event_date'], $final_name, $_POST['event_category_id'], $_POST['event_status_id'], $_POST['meta_title'], $_POST['meta_keyword'], $_POST['meta_description'], $_REQUEST['id']));
+		}
+
+		$success_message = 'event is updated successfully!';
 	}
 }
 ?>
 
 <?php
-if(!isset($_REQUEST['id'])) {
+if (!isset($_REQUEST['id'])) {
 	header('location: logout.php');
 	exit;
 } else {
@@ -131,7 +131,7 @@ if(!isset($_REQUEST['id'])) {
 	$statement->execute(array($_REQUEST['id']));
 	$total = $statement->rowCount();
 	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-	if( $total == 0 ) {
+	if ($total == 0) {
 		header('location: logout.php');
 		exit;
 	}
@@ -161,6 +161,7 @@ foreach ($result as $row) {
 	$event_date          = $row['event_date'];
 	$photo               = $row['photo'];
 	$event_category_id   = $row['event_category_id'];
+	$event_status_id     = $row['event_status_id'];
 	$meta_title          = $row['meta_title'];
 	$meta_keyword        = $row['meta_keyword'];
 	$meta_description    = $row['meta_description'];
@@ -172,20 +173,20 @@ foreach ($result as $row) {
 	<div class="row">
 		<div class="col-md-12">
 
-			<?php if($error_message): ?>
-			<div class="callout callout-danger">
-			
-			<p>
-			<?php echo $error_message; ?>
-			</p>
-			</div>
+			<?php if ($error_message) : ?>
+				<div class="callout callout-danger">
+
+					<p>
+						<?php echo $error_message; ?>
+					</p>
+				</div>
 			<?php endif; ?>
 
-			<?php if($success_message): ?>
-			<div class="callout callout-success">
-			
-			<p><?php echo $success_message; ?></p>
-			</div>
+			<?php if ($success_message) : ?>
+				<div class="callout callout-success">
+
+					<p><?php echo $success_message; ?></p>
+				</div>
 			<?php endif; ?>
 
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
@@ -198,11 +199,11 @@ foreach ($result as $row) {
 							</div>
 						</div>
 						<div class="form-group">
-		                    <label for="" class="col-sm-3 control-label">event Slug</label>
-		                    <div class="col-sm-6">
-		                        <input type="text" class="form-control" name="event_slug" value="<?php echo $event_slug; ?>">
-		                    </div>
-		                </div>
+							<label for="" class="col-sm-3 control-label">event Slug</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="event_slug" value="<?php echo $event_slug; ?>">
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">event Content <span>*</span></label>
 							<div class="col-sm-8">
@@ -234,42 +235,82 @@ foreach ($result as $row) {
 							</div>
 						</div>
 						<div class="form-group">
-				            <label for="" class="col-sm-3 control-label">Existing Featured Photo</label>
-				            <div class="col-sm-6" style="padding-top:6px;">
-				            	<?php
-				            	if($photo == '') {
-				            		echo 'No photo found';
-				            	} else {
-				            		echo '<img src="../assets/uploads/'.$photo.'" class="existing-photo" style="width:200px;">';	
-				            	}
-				            	?>
-				                <input type="hidden" name="previous_photo" value="<?php echo $photo; ?>">
-				            </div>
-				        </div>
-						<div class="form-group">
-				            <label for="" class="col-sm-3 control-label">Change Featured Photo</label>
-				            <div class="col-sm-6" style="padding-top:6px;">
-				                <input type="file" name="photo">
-				            </div>
-				        </div>
-						<div class="form-group">
-				            <label for="" class="col-sm-3 control-label">Categories <span>*</span></label>
-				            <div class="col-sm-3">
-				            	<select class="form-control select2" name="event_category_id">
+							<label for="" class="col-sm-3 control-label">Existing Featured Photo</label>
+							<div class="col-sm-6" style="padding-top:6px;">
 								<?php
-				            	$i=0;
-				            	$statement = $pdo->prepare("SELECT * FROM tbl_event_category ORDER BY event_category_name ASC");
-				            	$statement->execute();
-				            	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-				            	foreach ($result as $row) {
-									?>
-									<option value="<?php echo $row['event_category_id']; ?>" <?php if($row['event_category_id']==$event_category_id){echo 'selected';} ?>><?php echo $row['event_category_name']; ?></option>
-	                                <?php
+								if ($photo == '') {
+									echo 'No photo found';
+								} else {
+									echo '<img src="../assets/uploads/' . $photo . '" class="existing-photo" style="width:200px;">';
 								}
 								?>
+								<input type="hidden" name="previous_photo" value="<?php echo $photo; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Change Featured Photo</label>
+							<div class="col-sm-6" style="padding-top:6px;">
+								<input type="file" name="photo">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Categories <span>*</span></label>
+							<div class="col-sm-3">
+								<select class="form-control select2" name="event_category_id">
+									<?php
+									$i = 0;
+									$statement = $pdo->prepare("SELECT * FROM tbl_event_category ORDER BY event_category_name ASC");
+									$statement->execute();
+									$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+									foreach ($result as $row) {
+									?>
+										<option value="<?php echo $row['event_category_id']; ?>" <?php if ($row['event_category_id'] == $event_category_id) {
+																										echo 'selected';
+																									} ?>><?php echo $row['event_category_name']; ?></option>
+									<?php
+									}
+									?>
 								</select>
-				            </div>
-				        </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Event Status <span>*</span> </label>
+							<div class="col-sm-3">
+								<select class="form-control select2" name="event_status_id">
+									<!-- <?php
+											$statement = $pdo->prepare("SELECT * FROM tbl_events WHERE event_status_id = ?");
+											$statement->execute(array($event_status_id));
+											$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+											foreach ($result as $row) {
+											?>
+										<option value="<?php if ($row['event_status_id'] == 1) {
+													echo 1;
+												} else {
+													echo 0;
+												} ?>">
+
+											<?php if ($row['event_status_id'] == 1) {
+													echo "Upcomming";
+												} else {
+													echo "Past";
+												} ?>
+										</option>
+										<option value="<?php echo $row['event_status_id'] ?>">
+
+											<?php if ($row['event_status_id'] == 1) {
+													echo "Upcomming";
+												} else {
+													echo "Past";
+												} ?>
+										</option>
+									<?php
+											}
+									?> -->
+									<option value="1">Upcomming</option>
+									<option value="0">Past</option>
+								</select>
+							</div>
+						</div>
 						<h3 class="seo-info">SEO Information</h3>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Meta Title </label>

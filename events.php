@@ -3,13 +3,13 @@
   <!-- Upcoming events -->
   <section class="event-section">
     <h4 class="section-title text-3xl" style="display: block;">Upcoming Events</h4>
-    <?php getEvents() ?>
+    <?php getUpcomingEvents() ?>
   </section>
 
   <!-- Past events -->
   <section class="event-section">
     <h4 class="section-title text-3xl" style="display: block;">Past Events</h4>
-    <?php getEvents() ?>
+    <?php getPastEvents() ?>
   </section>
 </main>
 

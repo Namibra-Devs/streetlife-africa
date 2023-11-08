@@ -116,7 +116,7 @@ include('header.php')
   <!-- Events Section -->
   <section class="event-section">
     <h4 class="section-title text-3xl">Upcoming Events</h4>
-    <?php getEvents() ?>
+    <?php getUpcomingEvents() ?>
 
     <div class="flex-btn">
       <a href="events.php" class="view-all">View

@@ -26,7 +26,8 @@
 								<th>Thumbnail</th>
 								<th width="180">Title</th>
 								<th width="280">Short Content</th>
-								<th>event_category</th>
+								<th>Event Category</th>
+								<th>Event Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -41,6 +42,7 @@
 														t1.event_content_short,
 														t1.photo,
 														t1.event_category_id,
+														t1.event_status_id,
 														t1.event_link,
 
 														t2.event_category_id,
@@ -75,6 +77,13 @@
 									<td><?php echo $row['event_content_short']; ?></td>
 									<td>
 										<?php echo $row['event_category_name']; ?>
+									</td>
+									<td>
+									<?php if ($row['event_status_id'] == 1) {
+													echo "Upcoming";
+												} else {
+													echo "Past";
+												} ?>
 									</td>
 									<td>										
 										<a href="event-edit.php?id=<?php echo $row['event_id']; ?>" class="btn btn-primary btn-xs">Edit</a>

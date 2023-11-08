@@ -43,6 +43,13 @@ if(isset($_POST['form1'])) {
 		$error_message .= 'You must have to select a event_category<br>';
 	}
 
+	if(empty($_POST['event_status_id'])) {
+		$valid = 0;
+		$error_message .= 'You must have to select an event status<br>';
+	}
+
+
+
 
 	$path = $_FILES['photo']['name'];
     $path_tmp = $_FILES['photo']['tmp_name'];
@@ -87,15 +94,15 @@ if(isset($_POST['form1'])) {
 
 		if($path=='') {
 			// When no photo will be selected
-			$statement = $pdo->prepare("INSERT INTO tbl_events (event_title,event_slug,event_content,event_content_short,event_venue,event_date,event_link,photo,event_category_id,total_view,meta_title,meta_keyword,meta_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_venue'],$_POST['event_date'],$_POST['event_link'],'',$_POST['event_category_id'],0,$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description']));
+			$statement = $pdo->prepare("INSERT INTO tbl_events (event_title,event_slug,event_content,event_content_short,event_venue,event_date,event_link,photo,event_category_id,event_status_id,total_view,meta_title,meta_keyword,meta_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_venue'],$_POST['event_date'],$_POST['event_link'],'',$_POST['event_category_id'],$_POST['event_status_id'],0,$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description']));
 		} else {
     		// uploading the photo into the main location and giving it a final name
     		$final_name = 'event-'.$ai_id.'.'.$ext;
             move_uploaded_file( $path_tmp, '../assets/uploads/'.$final_name );
 
-            $statement = $pdo->prepare("INSERT INTO tbl_events (event_title,event_slug,event_content,event_content_short,event_venue,event_date,event_link,photo,event_category_id,total_view,meta_title,meta_keyword,meta_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_venue'],$_POST['event_date'],$_POST['event_link'],$final_name,$_POST['event_category_id'],0,$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description']));
+            $statement = $pdo->prepare("INSERT INTO tbl_events (event_title,event_slug,event_content,event_content_short,event_venue,event_date,event_link,photo,event_category_id,event_status_id,total_view,meta_title,meta_keyword,meta_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$statement->execute(array($_POST['event_title'],$event_slug,$_POST['event_content'],$_POST['event_content_short'],$_POST['event_venue'],$_POST['event_date'],$_POST['event_link'],$final_name,$_POST['event_category_id'],$_POST['event_status_id'],0,$_POST['meta_title'],$_POST['meta_keyword'],$_POST['meta_description']));
 		}
 	
 		$success_message = 'event is added successfully!';
@@ -187,7 +194,7 @@ if(isset($_POST['form1'])) {
 				            <label for="" class="col-sm-3 control-label">Select event_category <span>*</span></label>
 				            <div class="col-sm-3">
 				            	<select class="form-control select2" name="event_category_id">
-				            		<option value="">Select a event_category</option>
+				            		<option value="">Select an Event Category</option>
 				            		<?php
 						            	$i=0;
 						            	$statement = $pdo->prepare("SELECT * FROM tbl_event_category ORDER BY event_category_name ASC");
@@ -202,6 +209,15 @@ if(isset($_POST['form1'])) {
 				            	</select>
 				            </div>
 				        </div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Event Status <span>*</span> </label>
+							<div class="col-sm-3">
+								<select class="form-control select2" name="event_status_id">
+									<option value="1">Upcomming</option>
+									<option value="0">Past</option>
+								</select>
+							</div>
+						</div>
 						<h3 class="seo-info">SEO Information</h3>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Meta Title </label>
